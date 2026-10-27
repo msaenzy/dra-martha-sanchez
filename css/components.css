@@ -304,3 +304,16 @@ html, body { overflow-x: clip; }
   .ig__chips li { flex: none; scroll-snap-align: start; }
   .ig__more h3::after { content: " · desliza →"; font-weight: 400; font-size: .9rem; opacity: .85; }
 }
+/* v4.1: "Cómo agendar" sin foto → 4 pasos en cuadrícula */
+.about__media .photo img { object-position: 35% 25%; }
+.ig__avatar img { object-position: 50% 22%; }
+.field label small { font-weight: 400; opacity: .75; }
+/* v4.3: chips del hero como botones (WhatsApp, mapa, Instagram) */
+.hero__facts li { padding: 0; transition: transform .3s var(--ease-pop), box-shadow .3s; }
+.hero__facts li a { min-height: 2.75rem; padding: 0.45rem 1rem 0.45rem 0.55rem; border-radius: var(--radius-pill); cursor: pointer; }
+.hero__facts li a::after { content: "→"; margin-left: .15rem; opacity: 0; translate: -4px 0; transition: opacity .25s, translate .3s var(--ease-out); }
+.hero__facts li:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.hero__facts li a:hover::after, .hero__facts li a:focus-visible::after { opacity: 1; translate: 0 0; }
+.hero__facts li a:focus-visible { outline: 3px solid var(--color-secondary); outline-offset: 2px; }
+.hero__facts li a:hover .icon { background: var(--color-secondary); color: #fff; }
+.hero__facts .icon { transition: background .25s, color .25s; }

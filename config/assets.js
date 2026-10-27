@@ -6,7 +6,6 @@ export const assets = {
   placeholder: "./assets/images/placeholder.svg",
   hero: "./assets/images/martha-escritorio.jpg",
   panel: "./assets/images/martha-recien-nacido.jpg",
-  how: "./assets/images/dra-martha-consultorio.jpg",
-  about: "./assets/images/dra-martha-bata.jpg",
+  about: "./assets/images/martha-escritorio.jpg",
   face: "./assets/images/martha-rostro.jpg",
 };

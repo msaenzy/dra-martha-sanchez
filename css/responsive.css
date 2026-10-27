@@ -55,3 +55,10 @@
   .hero__star { inset: -4% -4% auto auto; width: 78%; }
   .about__media .wave { inset: -4% -8% -4% 20%; }
 }
+/* v4.1: sin foto en "Cómo agendar" */
+@media (min-width: 48em) { .how__grid { grid-template-columns: repeat(2, 1fr); max-width: 60rem; margin-inline: auto; } }
+@media (min-width: 64em) {
+  .how__grid { grid-template-columns: repeat(4, 1fr); grid-template-rows: auto; max-width: none; align-items: stretch; }
+  .how__grid .step:nth-of-type(n) { grid-column: auto; grid-row: auto; transform: none; }
+  .how__grid .step:nth-of-type(even) { margin-top: 2rem; }
+}

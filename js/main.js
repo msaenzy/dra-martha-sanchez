@@ -27,7 +27,11 @@ if (form) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const d = new FormData(form);
-    const msg = `Hola Dra. Martha, soy ${String(d.get("nombre") || "").trim()}. Quiero agendar ${d.get("motivo")} (${d.get("modalidad")}) y prefiero atención en ${d.get("horario")}. ¿Me ayudan con la cita?`;
+    const nombre = String(d.get("nombre") || "").trim();
+    const paciente = String(d.get("paciente") || "").trim();
+    const motivo = String(d.get("motivo"));
+    const para = motivo.includes("prenatal") ? "" : paciente ? ` para mi hijo/a (${paciente})` : " para mi hijo/a";
+    const msg = `Hola, Dra. Martha. Mi nombre es ${nombre} y me gustaría agendar ${motivo}${para}. Prefiero ${d.get("modalidad")} y ${d.get("horario")}. ¿Podría confirmarme la disponibilidad, por favor? Muchas gracias.`;
     window.open(`https://wa.me/593979530787?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
   });
 }

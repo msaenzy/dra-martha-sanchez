@@ -1,0 +1,74 @@
+/* viewport.css — v4.4: en escritorio cada sección ocupa exactamente una pantalla (100% del alto de la vista)
+   y su contenido se escala con el alto disponible para que siempre se vea completo y centrado. */
+@media (min-width: 64em) and (min-height: 600px) {
+  :root { --vh-pad-top: calc(var(--header-h) + clamp(0.75rem, 2svh, 1.5rem)); --vh-pad-bottom: clamp(0.75rem, 2.5svh, 2rem); }
+
+  main > .section, main > .hero {
+    min-height: 100svh; display: flex; flex-direction: column; justify-content: center;
+    padding-top: var(--vh-pad-top); padding-bottom: var(--vh-pad-bottom);
+  }
+  main > .section > .container, main > .hero > .container { width: min(100% - 2 * var(--gutter), var(--container)); flex: none; }
+  html { scroll-padding-top: 0; }
+  :target { scroll-margin-top: 0; }
+
+  .section__head { margin-bottom: clamp(0.8rem, 3svh, 2.5rem); gap: clamp(0.4rem, 1svh, 0.875rem); }
+  h2 { font-size: clamp(1.8rem, 1rem + 3.2svh, 3rem); }
+
+  /* Inicio */
+  .hero__copy { gap: clamp(0.7rem, 2.2svh, 1.5rem); }
+  .hero__media { width: min(28rem, calc((100svh - var(--header-h) - 6rem) * 0.74)); padding-top: 1rem; }
+  .hero h1 { font-size: clamp(2.4rem, 1rem + 6svh, 4.6rem); }
+
+  /* Paneles con foto (Dudas) */
+  .panel__grid { padding: clamp(1.25rem, 4svh, 3.5rem); gap: clamp(1.5rem, 4svh, 4rem); }
+  .panel__photo { width: min(100%, calc((100svh - var(--header-h) - 9rem) * 0.8)); justify-self: center; }
+  .panel__copy { gap: clamp(0.6rem, 2svh, 1.5rem); }
+  .chips li { padding-block: clamp(0.3rem, 0.9svh, 0.6rem); }
+
+  /* Servicios */
+  .svc__art { height: clamp(5.5rem, 15svh, 9.5rem); }
+  .svc__art svg { width: clamp(3.4rem, 9svh, 5.2rem); height: clamp(3.4rem, 9svh, 5.2rem); }
+  .svc__body { padding: clamp(0.8rem, 2.2svh, 1.3rem) 1.4rem clamp(0.9rem, 2.4svh, 1.5rem); gap: 0.35rem; }
+  #servicios .section__head + .carousel + p, #servicios .container > div:last-child { margin-top: clamp(0.6rem, 2svh, 1.5rem) !important; }
+
+  /* Instagram */
+  .ig .panel__grid { gap: clamp(0.8rem, 2.4svh, 2rem); }
+  .ig__box { padding: clamp(0.8rem, 2.2svh, 2rem); gap: clamp(0.8rem, 2svh, 1.5rem); }
+  .ig__avatar { width: clamp(4rem, 11svh, 6.2rem); height: clamp(4rem, 11svh, 6.2rem); }
+  .ig__side { gap: clamp(0.3rem, 1svh, 0.6rem); }
+  .reel__media { aspect-ratio: auto; height: clamp(9rem, 30svh, 19rem); }
+  .reel__body { padding: 0.75rem 1rem 0.85rem; gap: 0.2rem; }
+  .reel__body span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .ig__more { gap: 0.5rem; }
+  .ig__chips { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scroll-snap-type: x proximity; padding: 0.3rem 0.2rem 0.7rem; scrollbar-width: thin; scrollbar-color: rgb(255 255 255 / .7) transparent; }
+  .ig__chips li { flex: none; }
+  .ig__more h3::after { content: " · desliza →"; font-weight: 400; font-size: .9rem; opacity: .85; }
+  .carousel__dots { margin-top: clamp(0.5rem, 1.5svh, 1rem); }
+
+  /* Sobre la doctora */
+  .about__grid { align-items: center; }
+  .about__media { width: min(26rem, calc((100svh - var(--header-h) - 5rem) * 0.76)); }
+  .about__copy { gap: clamp(0.5rem, 1.6svh, 0.875rem); }
+  .facts { padding-block: clamp(0.8rem, 2svh, 1.4rem); }
+
+  /* Preguntas */
+  .faq summary { min-height: clamp(2.9rem, 6.5svh, 3.5rem); padding-block: clamp(0.5rem, 1.2svh, 0.9rem); }
+  .faq__list { gap: clamp(0.5rem, 1.2svh, 0.8rem); }
+
+  /* Atención */
+  .place__map, .place__art { aspect-ratio: auto; height: clamp(8rem, 27svh, 17rem); }
+  .place__body { gap: clamp(0.5rem, 1.4svh, 1rem); }
+
+  /* Agenda */
+  .book__grid { padding: clamp(1.25rem, 4svh, 3.5rem); }
+  .form { gap: clamp(0.45rem, 1.3svh, 0.875rem); padding: clamp(1rem, 2.6svh, 1.6rem); }
+  .field input, .field select { min-height: clamp(2.6rem, 5.6svh, 3.1rem); padding-block: 0.45rem; }
+}
+@media (min-width: 64em) and (min-height: 600px) and (max-height: 960px) {
+  .reel__media { height: clamp(8rem, 25svh, 19rem); }
+  .reel__body span { -webkit-line-clamp: 1; }
+  .ig .section__head p { display: none; }
+  .ig__stats { display: none; }
+  .svc__art { height: clamp(4.8rem, 11.5svh, 9.5rem); }
+  #servicios .section__head p { font-size: var(--text-sm); }
+}
