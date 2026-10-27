@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://msaenzy.github.io/dra-martha-sanchez/sitemap.xml

@@ -245,3 +245,62 @@ html[data-scrolled="true"] .site-header { box-shadow: 0 6px 24px rgb(110 70 160 
 .ig__box .carousel__slide { scroll-snap-align: start; }
 .carousel__dots button { position: relative; }
 .carousel__dots button::before { content: ""; position: absolute; inset: -0.8rem -0.35rem; }
+
+/* ---------- Instagram v4: perfil + reels reales ---------- */
+.ig__avatar { display: block; width: 6.2rem; height: 6.2rem; padding: 4px; border-radius: 50%; background: conic-gradient(from 200deg, #ffc93c, #ff6fa6, #7b4fc0, #ffc93c); box-shadow: var(--shadow-sm); transition: transform .35s var(--ease-pop); }
+.ig__avatar:hover { transform: rotate(-4deg) scale(1.05); }
+.ig__avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: 50% 30%; border: 3px solid #fff; }
+.ig__bio { line-height: 1.45; }
+.ig__stats { list-style: none; margin: 0.2rem 0; padding: 0; display: flex; gap: 1.1rem; justify-content: center; }
+.ig__stats li { display: grid; font-size: var(--text-xs); color: var(--color-muted); line-height: 1.2; }
+.ig__stats b { font-family: var(--font-display); font-size: 1.25rem; color: var(--color-secondary); }
+.ig__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+.btn--ig { color: #fff; background: linear-gradient(45deg, #ff9a2e 0%, #ff4f8b 50%, #8a4fd0 100%); box-shadow: 0 10px 22px rgb(214 70 140 / .32); }
+.btn--ig:hover { transform: translateY(-3px) scale(1.03); }
+
+.ig__box .carousel__slide { flex-basis: min(78%, 15.5rem); }
+.reel { display: grid; grid-template-rows: auto 1fr; height: 100%; text-decoration: none; color: var(--color-text); background: #f8f2fc; border-radius: var(--radius-md); overflow: hidden; box-shadow: 0 1px 0 rgb(123 79 192 / .08); transition: transform .4s var(--ease-pop), box-shadow .4s; }
+.reel:hover, .reel:focus-visible { transform: translateY(-6px) rotate(-.6deg); box-shadow: var(--shadow-md); }
+.reel__media { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: var(--color-pink-soft); }
+.reel__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease-out); }
+.reel:hover .reel__media img { transform: scale(1.06); }
+.reel__play { position: absolute; left: 50%; top: 50%; translate: -50% -50%; display: grid; place-items: center; width: 3.4rem; height: 3.4rem; border-radius: 50%; background: rgb(255 255 255 / .88); color: var(--color-secondary); box-shadow: 0 8px 24px rgb(60 20 90 / .28); transition: scale .35s var(--ease-pop); }
+.reel__play .icon { width: 1.5rem; height: 1.5rem; margin-left: .2rem; }
+.reel:hover .reel__play { scale: 1.15; }
+.reel__badge { position: absolute; top: .7rem; left: .7rem; display: inline-flex; align-items: center; gap: .3rem; padding: .25rem .6rem; border-radius: var(--radius-pill); background: rgb(30 10 50 / .55); backdrop-filter: blur(6px); color: #fff; font-family: var(--font-display); font-weight: 600; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; }
+.reel__badge .icon { width: .95rem; height: .95rem; }
+.reel__body { display: grid; gap: .35rem; align-content: start; padding: 1rem 1.05rem 1.1rem; }
+.reel__body strong, .reel--more strong { font-family: var(--font-display); font-weight: 600; font-size: 1.08rem; line-height: 1.2; color: var(--color-primary); }
+.reel__body span, .reel--more > span:not(.reel__more-ico) { font-size: var(--text-sm); color: var(--color-muted); line-height: 1.45; }
+.reel em { display: inline-flex; align-items: center; gap: .35rem; margin-top: .3rem; font-style: normal; font-family: var(--font-display); font-weight: 600; font-size: .92rem; color: var(--color-secondary); }
+.reel em .icon { width: 1rem; height: 1rem; transition: translate .3s var(--ease-out); }
+.reel:hover em .icon { translate: 4px 0; }
+.reel--more { grid-template-rows: none; align-content: center; justify-items: center; text-align: center; gap: .6rem; padding: 1.5rem; min-height: 100%; background: linear-gradient(160deg, #fff4f9 0%, #f1e6fd 100%); border: 2px dashed #e2c9f3; }
+.reel__more-ico { display: grid; place-items: center; width: 4rem; height: 4rem; border-radius: 1.3rem; background: linear-gradient(45deg, #ffc93c 0%, #ff6fa6 50%, #7b4fc0 100%); color: #fff; }
+.reel__more-ico .icon { width: 2rem; height: 2rem; }
+
+.ig__more { display: grid; gap: var(--space-sm); }
+.ig__more h3 { font-size: 1.25rem; color: #fff; text-align: center; }
+.ig__chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .55rem; }
+.ig__chips a { display: inline-flex; align-items: center; gap: .45rem; min-height: 2.75rem; padding: .45rem 1rem .45rem .5rem; border-radius: var(--radius-pill); background: #fff; color: var(--color-primary); text-decoration: none; font-weight: 700; font-size: var(--text-sm); box-shadow: 0 6px 16px rgb(120 40 30 / .14); transition: transform .3s var(--ease-pop), background .3s, color .3s; }
+.ig__chips a:hover, .ig__chips a:focus-visible { transform: translateY(-3px) rotate(-1deg); background: var(--color-primary); color: #fff; }
+.ig__chips .icon { width: 1.6rem; height: 1.6rem; padding: .35rem; box-sizing: border-box; border-radius: 50%; background: var(--color-pink-soft); color: var(--color-secondary); }
+.hero__facts li a { display: inline-flex; align-items: center; gap: 0.5rem; color: inherit; text-decoration: none; }
+.hero__facts li a:hover { color: var(--color-secondary); }
+.about__copy p a { color: var(--color-primary); font-weight: 700; text-underline-offset: 3px; }
+.site-footer__links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.2rem 1.2rem; padding-top: var(--space-sm); border-top: 1px solid rgb(255 255 255 / .25); }
+.site-footer__links a { color: #fff; text-decoration: none; font-weight: 700; font-size: var(--text-sm); min-height: 2.75rem; display: inline-flex; align-items: center; }
+.site-footer__links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.site-footer__nap { grid-column: 1 / -1; font-style: normal; font-size: var(--text-sm); line-height: 1.6; color: #ffe2ef; }
+.site-footer__nap a { color: #fff; }
+/* ajustes v4 */
+html, body { overflow-x: clip; }
+.ig__avatar img { object-position: 50% 50%; }
+.reel__play { left: auto; top: auto; right: .7rem; bottom: .7rem; translate: none; width: 2.8rem; height: 2.8rem; }
+.reel__play .icon { width: 1.2rem; height: 1.2rem; }
+@media (max-width: 47.99em) {
+  .ig__chips { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scroll-snap-type: x proximity; padding: .3rem .2rem .9rem; margin-inline: -.2rem; scrollbar-width: none; }
+  .ig__chips::-webkit-scrollbar { display: none; }
+  .ig__chips li { flex: none; scroll-snap-align: start; }
+  .ig__more h3::after { content: " · desliza →"; font-weight: 400; font-size: .9rem; opacity: .85; }
+}

@@ -25,4 +25,5 @@ Inicio · Dudas (panel morado) · Servicios (carrusel, 7) · Cómo agendar (4 pa
 - Logo vectorial original (MS con el bebé).
 - Piso/consultorio exacto y enlace de Google Business.
 - Testimonios reales (con permiso) y formación/credenciales (universidad, residencia) para una sección tipo "Formaciones".
-- Enlaces directos a los reels de Instagram (hoy cada tarjeta lleva al perfil).
+- ~~Enlaces directos a los reels~~ (resuelto en v4). Portadas de reels = capturas de Instagram a 480×600; reemplazar por originales si se quieren más nítidas.
+- Ficha de Google Business Profile de la doctora (para añadirla a `sameAs` y al botón del mapa).

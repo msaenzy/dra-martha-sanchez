@@ -39,7 +39,7 @@ jobs:
           mkdir -p _site
           cp -r index.html css js config assets _site/
           [ -d pages ] && cp -r pages _site/ || true
-          for f in 404.html robots.txt sitemap.xml favicon.ico favicon.svg; do [ -f "$f" ] && cp "$f" _site/ || true; done
+          for f in 404.html robots.txt sitemap.xml site.webmanifest favicon.ico favicon.svg; do [ -f "$f" ] && cp "$f" _site/ || true; done
           touch _site/.nojekyll
 
       - name: Configure Pages

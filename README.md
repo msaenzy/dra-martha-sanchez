@@ -63,5 +63,18 @@ Todas las rutas son relativas, así que funciona bajo `/REPOSITORIO/` y con domi
 Ver `docs/DESIGN-ANALYSIS.md` (supuestos, assets y fuentes faltantes).
 
 
+## v4 — Instagram real + SEO + vista previa al compartir (27-oct-2026)
+- Sección **Videos**: 7 reels reales con su portada (`assets/images/reels/`) y enlace directo a cada video, tarjeta "Ver todos los reels", 14 temas más enlazados a sus reels/posts, perfil con botones Seguir y Mensaje (ig.me).
+- Enlaces a Instagram también en el hero, en "Sobre la doctora" y en el footer (más mapa de enlaces y datos NAP para SEO local).
+- **SEO**: title/description nuevos, canonical, robots, `geo.*`, JSON-LD (`Physician` + `MedicalBusiness`, `WebSite`, `FAQPage`), `robots.txt`, `sitemap.xml` (con imágenes), `404.html`, `site.webmanifest`.
+- **Vista previa al compartir** (WhatsApp/Facebook/IG/X): `assets/images/og-dra-martha-sanchez-pediatra.jpg` 1200×630 con URL absoluta.
+- Íconos: favicon SVG limpio, `favicon-32.png`, `apple-touch-icon.png`, `icon-192/512.png`.
+- Fix: scroll horizontal en móvil (`overflow-x: clip`).
+
+### Después de publicar
+1. Google Search Console → agregar propiedad `https://msaenzy.github.io/dra-martha-sanchez/` → verificar con la meta del `<head>` (está comentada) → enviar `sitemap.xml`.
+2. Refrescar la vista previa: pegar la URL en https://developers.facebook.com/tools/debug/ y pulsar "Volver a extraer" (WhatsApp usa la misma caché).
+3. Si se conecta un dominio propio, reemplazar `https://msaenzy.github.io/dra-martha-sanchez/` en `index.html`, `robots.txt` y `sitemap.xml`, y las rutas `/dra-martha-sanchez/` de `404.html`.
+
 ## Pendientes (ver docs/DESIGN-ANALYSIS.md)
 Fotos originales en alta resolución, logo vectorial, dirección exacta y testimonios reales.
