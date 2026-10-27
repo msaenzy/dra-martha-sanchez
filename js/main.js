@@ -2,6 +2,7 @@
 import { assets } from "../config/assets.js";
 import { initNavigation } from "./navigation.js";
 import { initAnimations } from "./animations.js";
+import { initCarousels } from "./carousel.js";
 
 // <html data-base="./"> en la raíz, "../" en pages/*.html
 const base = document.documentElement.dataset.base || "./";
@@ -18,6 +19,7 @@ document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new D
 
 initNavigation();
 initAnimations();
+initCarousels();
 
 // Formulario → WhatsApp (sin backend): arma el mensaje y abre wa.me con los datos del formulario.
 const form = document.getElementById("form-cita");

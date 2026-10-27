@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dra. Martha Sánchez | Pediatra en Guayaquil</title>
   <meta name="description" content="Dra. Martha Sánchez, especialista en pediatría en Guayaquil. Consulta pediátrica integral del nacimiento a los 15 años, vacunación, asesoría en lactancia y alimentación complementaria. Presencial y teleconsulta, previa cita.">
-  <meta name="theme-color" content="#fbf6f3">
+  <meta name="theme-color" content="#fdf7fc">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Dra. Martha Sánchez | Pediatra en Guayaquil">
   <meta property="og:description" content="Consulta pediátrica integral del nacimiento a los 15 años, vacunación y asesoría en lactancia. Presencial y teleconsulta.">
-  <meta property="og:image" content="./assets/images/dra-martha-consultorio.jpg">
+  <meta property="og:image" content="./assets/images/martha-escritorio.jpg">
   <meta property="og:locale" content="es_EC">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Dra. Martha Sánchez | Pediatra en Guayaquil">
@@ -18,9 +18,8 @@
 
   <script>document.documentElement.classList.replace("no-js", "js");</script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Caveat:wght@600&family=Figtree:wght@400;500;600;700&display=swap">
+  <link rel="preload" href="./assets/fonts/fredoka-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/nunito-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="stylesheet" href="./css/variables.css">
   <link rel="stylesheet" href="./css/reset.css">
@@ -38,13 +37,8 @@
     "medicalSpecialty": "Pediatric",
     "description": "Especialista en pediatría en Guayaquil: consulta pediátrica integral, vacunación, asesoría en lactancia y alimentación complementaria.",
     "telephone": "+593979530787",
-    "image": "./assets/images/dra-martha-consultorio.jpg",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Edificio Ágora Medical Center",
-      "addressLocality": "Guayaquil",
-      "addressCountry": "EC"
-    },
+    "image": "./assets/images/martha-escritorio.jpg",
+    "address": { "@type": "PostalAddress", "streetAddress": "Edificio Ágora Medical Center", "addressLocality": "Guayaquil", "addressCountry": "EC" },
     "openingHoursSpecification": [
       { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "08:00", "closes": "13:00" },
       { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "14:00", "closes": "18:00" }
@@ -54,33 +48,49 @@
   </script>
 </head>
 <body>
-  <!-- Sprite de iconos lineales (mismo trazo en todo el sitio) y garabatos decorativos -->
+  <!-- Sprite: iconos lineales + stickers ilustrados (originales) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
-      <symbol id="i-baby" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M9 12.5v.01M15 12.5v.01M9.5 16c1.4 1.2 3.6 1.2 5 0M12 5c.4-1.6 2.4-2.2 3.4-1.2"/></symbol>
-      <symbol id="i-syringe" viewBox="0 0 24 24"><path d="M15 3l6 6M18 6l-9.5 9.5M13 8l3 3M8.5 15.5L4 20M10 17l-3-3M6.5 13.5L5 15l4 4 1.5-1.5"/></symbol>
-      <symbol id="i-spoon" viewBox="0 0 24 24"><ellipse cx="12" cy="7.5" rx="3.6" ry="5"/><path d="M12 12.5V21"/></symbol>
-      <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3c3.6 4.4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 2.4-6.6 6-11z"/><path d="M9.5 14.5a2.7 2.7 0 0 0 2.5 2.5"/></symbol>
-      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
-      <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="M16 10.5l5-3v9l-5-3"/></symbol>
-      <symbol id="i-stetho" viewBox="0 0 24 24"><path d="M6 3v6a4 4 0 0 0 8 0V3M10 13v1.5a5 5 0 0 0 10 0V13"/><circle cx="20" cy="11" r="2"/></symbol>
+      <!-- iconos lineales -->
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/><path d="M9 9.5c.4 2 2.5 4.1 4.5 4.5l1.3-1.3-1.8-1-.9.7a3.5 3.5 0 0 1-1.6-1.6l.7-.9-1-1.8L9 9.5z"/></symbol>
       <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11.5a7 7 0 0 0-14 0C5 15 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
       <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
       <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
-      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
-      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/><path d="M9 9.5c.4 2 2.5 4.1 4.5 4.5l1.3-1.3-1.8-1-.9.7a3.5 3.5 0 0 1-1.6-1.6l.7-.9-1-1.8L9 9.5z"/></symbol>
       <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.2 6.8v.01"/></symbol>
       <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
       <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+      <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+      <symbol id="i-down" viewBox="0 0 24 24"><path d="M7 7l10 10M17 9v8H9"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></symbol>
+      <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="M16 10.5l5-3v9l-5-3"/></symbol>
+      <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
 
-      <symbol id="d-rainbow" viewBox="0 0 100 64"><path d="M8 58A42 42 0 0 1 92 58M22 58A28 28 0 0 1 78 58M36 58A14 14 0 0 1 64 58"/><path d="M4 58c-4-8 6-11 10-6 4-4 12 0 8 6M78 58c-3-7 6-10 10-5 5-3 11 1 8 5"/></symbol>
-      <symbol id="d-heart" viewBox="0 0 64 56"><path d="M32 52C10 36 4 24 4 16A13 13 0 0 1 32 12a13 13 0 0 1 28 4c0 8-6 20-28 36z"/></symbol>
-      <symbol id="d-star" viewBox="0 0 24 24"><path d="M12 1c.8 6 5 10.2 11 11-6 .8-10.2 5-11 11-.8-6-5-10.2-11-11C7 11.2 11.2 7 12 1z"/></symbol>
-      <symbol id="d-dash" viewBox="0 0 300 200"><path d="M8 192C80 192 60 100 140 100S210 30 292 14"/></symbol>
-      <symbol id="d-ring" viewBox="0 0 400 400"><path d="M200 22c72-12 150 38 172 118 20 76-32 160-102 210-70 44-160 28-210-34C-4 252 14 150 66 92c36-42 80-62 134-70z"/></symbol>
+      <!-- stickers decorativos -->
+      <symbol id="st-star-pink" viewBox="0 0 100 100"><path d="M50 10 61.2 34.6 88 37.6 68.1 55.9 73.5 82.4 50 69 26.5 82.4 31.9 55.9 12 37.6 38.8 34.6Z" fill="#ff7fb0" stroke="#ff7fb0" stroke-width="12" stroke-linejoin="round"/><g fill="none" stroke="#ff8a3c" stroke-width="2.4"><circle cx="50" cy="30" r="3.6"/><circle cx="33" cy="42" r="3.6"/><circle cx="67" cy="42" r="3.6"/><circle cx="42" cy="58" r="3.6"/><circle cx="58" cy="58" r="3.6"/><circle cx="50" cy="46" r="3.6"/><circle cx="50" cy="68" r="3.6"/><circle cx="24" cy="38" r="3.2"/><circle cx="76" cy="38" r="3.2"/></g></symbol>
+      <symbol id="st-star-orange" viewBox="0 0 100 100"><path d="M50 10 61.2 34.6 88 37.6 68.1 55.9 73.5 82.4 50 69 26.5 82.4 31.9 55.9 12 37.6 38.8 34.6Z" fill="#ff8f2e" stroke="#ff8f2e" stroke-width="12" stroke-linejoin="round"/><g fill="none" stroke="#2a6fd6" stroke-width="2.6"><circle cx="50" cy="30" r="3.8"/><circle cx="33" cy="42" r="3.8"/><circle cx="67" cy="42" r="3.8"/><circle cx="42" cy="58" r="3.8"/><circle cx="58" cy="58" r="3.8"/><circle cx="50" cy="46" r="3.8"/><circle cx="50" cy="68" r="3.8"/></g></symbol>
+      <symbol id="st-sparkle" viewBox="0 0 100 100"><path d="M50 4C54 34 66 46 96 50 66 54 54 66 50 96 46 66 34 54 4 50 34 46 46 34 50 4Z" fill="#ffc93c"/></symbol>
+      <symbol id="st-flower" viewBox="0 0 100 100"><g fill="#2fc4c0"><circle cx="77" cy="50" r="17"/><circle cx="63.5" cy="73.4" r="17"/><circle cx="36.5" cy="73.4" r="17"/><circle cx="23" cy="50" r="17"/><circle cx="36.5" cy="26.6" r="17"/><circle cx="63.5" cy="26.6" r="17"/></g><circle cx="50" cy="50" r="13" fill="#fff3b0"/></symbol>
+      <symbol id="st-flower-blue" viewBox="0 0 100 100"><g fill="#2a6fd6"><ellipse cx="50" cy="26" rx="11" ry="21"/><ellipse cx="50" cy="26" rx="11" ry="21" transform="rotate(60 50 50)"/><ellipse cx="50" cy="26" rx="11" ry="21" transform="rotate(120 50 50)"/><ellipse cx="50" cy="26" rx="11" ry="21" transform="rotate(180 50 50)"/><ellipse cx="50" cy="26" rx="11" ry="21" transform="rotate(240 50 50)"/><ellipse cx="50" cy="26" rx="11" ry="21" transform="rotate(300 50 50)"/></g><circle cx="50" cy="50" r="9" fill="#ffc93c"/></symbol>
+      <symbol id="st-heart" viewBox="0 0 100 100"><path d="M50 88C14 62 6 42 10 28 15 10 38 8 50 28 62 8 85 10 90 28 94 42 86 62 50 88Z" fill="#ff5f9b"/></symbol>
+      <symbol id="st-heart-line" viewBox="0 0 100 100"><path d="M50 86C16 62 8 42 12 29 17 12 38 10 50 29 62 10 83 12 88 29 92 42 84 62 50 86Z" fill="none" stroke="#2a6fd6" stroke-width="8" stroke-linejoin="round"/></symbol>
+      <symbol id="st-cloud" viewBox="0 0 100 100"><path d="M24 80C6 80 2 56 22 52 20 28 48 20 58 38 68 24 94 34 88 56 102 60 98 80 80 80Z" fill="#35c9e8"/><g fill="none" stroke="#0b3b4a" stroke-width="3.2" stroke-linecap="round"><path d="M36 58q4-5 8 0M58 58q4-5 8 0M45 66q7 7 14 0"/></g><circle cx="33" cy="66" r="4.2" fill="#ff8fb5"/><circle cx="69" cy="66" r="4.2" fill="#ff8fb5"/></symbol>
+      <symbol id="st-sun" viewBox="0 0 100 100"><g stroke="#ffc93c" stroke-width="7" stroke-linecap="round"><path d="M50 6v12M50 82v12M6 50h12M82 50h12M19 19l8 8M73 73l8 8M81 19l-8 8M27 73l-8 8"/></g><circle cx="50" cy="50" r="27" fill="#ffd54f"/><g fill="none" stroke="#b2641a" stroke-width="3" stroke-linecap="round"><path d="M39 47q4-5 8 0M53 47q4-5 8 0M44 56q6 6 12 0"/></g><circle cx="37" cy="56" r="4" fill="#ff8fb5"/><circle cx="63" cy="56" r="4" fill="#ff8fb5"/></symbol>
+      <symbol id="st-swirl" viewBox="0 0 400 500"><path d="M190 250a10 10 0 1 1 20 0a30 30 0 1 1-60 0a50 50 0 1 1 100 0a70 70 0 1 1-140 0a90 90 0 1 1 180 0a110 110 0 1 1-220 0" fill="none" stroke="#ff8d6a" stroke-width="24" stroke-linecap="round"/></symbol>
+      <symbol id="st-wave" viewBox="0 0 400 500"><path d="M290 60C372 130 345 215 240 245 135 275 150 365 245 405" fill="none" stroke="#8ec9d0" stroke-width="70" stroke-linecap="round"/></symbol>
+
+      <!-- ilustraciones de servicios -->
+      <symbol id="s-stetho" viewBox="0 0 64 64"><g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"><path d="M16 8v16a14 14 0 0 0 28 0V8"/><path d="M30 38v6a10 10 0 0 0 20 0v-4"/></g><circle cx="16" cy="8" r="3.6" fill="#fff"/><circle cx="44" cy="8" r="3.6" fill="#fff"/><circle cx="50" cy="34" r="7" fill="#ffc93c" stroke="#fff" stroke-width="3"/></symbol>
+      <symbol id="s-syringe" viewBox="0 0 64 64"><g transform="rotate(45 32 32)"><rect x="22" y="14" width="20" height="30" rx="5" fill="#fff"/><rect x="27" y="4" width="10" height="7" rx="2" fill="#fff"/><rect x="31" y="44" width="2.6" height="14" rx="1.3" fill="#fff"/><g stroke="#ff6fa6" stroke-width="3" stroke-linecap="round"><path d="M28 22h8M28 28h8M28 34h8"/></g></g></symbol>
+      <symbol id="s-spoon" viewBox="0 0 64 64"><ellipse cx="32" cy="20" rx="12" ry="15" fill="#fff"/><rect x="29" y="33" width="6" height="25" rx="3" fill="#fff"/><path d="M32 27C25 22 25 16 29 15.5 31 15.3 32 17 32 17s1-1.700 3-1.500C39 16 39 22 32 27Z" fill="#ff6fa6"/></symbol>
+      <symbol id="s-prenatal" viewBox="0 0 64 64"><path d="M32 56C10 40 6 28 9 19 12 9 26 8 32 19 38 8 52 9 55 19 58 28 54 40 32 56Z" fill="#fff"/><path d="M32 22c5 6 8 9 8 13a8 8 0 0 1-16 0c0-4 3-7 8-13z" fill="#35c9e8"/></symbol>
+      <symbol id="s-drop" viewBox="0 0 64 64"><path d="M32 6C44 21 52 31 52 41a20 20 0 0 1-40 0C12 31 20 21 32 6z" fill="#fff"/><path d="M22 42a10 10 0 0 0 9 9" fill="none" stroke="#35c9e8" stroke-width="4" stroke-linecap="round"/></symbol>
+      <symbol id="s-video" viewBox="0 0 64 64"><rect x="5" y="14" width="38" height="36" rx="9" fill="#fff"/><path d="M43 29l16-9v24l-16-9z" fill="#fff"/><path d="M24 40C15 34 15 27 19 26.500 21.500 26 24 28.500 24 28.500S26.500 26 29 26.500C33 27 33 34 24 40Z" fill="#ff6fa6"/></symbol>
+      <symbol id="s-thermo" viewBox="0 0 64 64"><rect x="26" y="6" width="12" height="38" rx="6" fill="#fff"/><circle cx="32" cy="48" r="11" fill="#fff"/><circle cx="32" cy="48" r="6" fill="#ff5f7e"/><rect x="30" y="20" width="4" height="26" rx="2" fill="#ff5f7e"/><g stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M46 14h8M46 22h6M46 30h8"/></g></symbol>
     </defs>
   </svg>
 
+  <div class="scroll-progress" data-progress aria-hidden="true"></div>
   <a class="skip-link" href="#main">Saltar al contenido</a>
 
   <header class="site-header" data-header>
@@ -90,281 +100,323 @@
     </a>
     <nav aria-label="Principal">
       <ul id="nav-menu" class="site-header__menu" data-nav-menu role="list">
-        <li><a href="#sobre">Sobre la doctora</a></li>
         <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#cita">Cómo agendar</a></li>
+        <li><a href="#como">Cómo agendar</a></li>
+        <li><a href="#instagram">Instagram</a></li>
+        <li><a href="#sobre">Sobre la doctora</a></li>
         <li><a href="#preguntas">Preguntas</a></li>
-        <li><a href="#ubicacion">Ubicación</a></li>
+        <li><a href="#atencion">Ubicación</a></li>
       </ul>
     </nav>
     <div class="site-header__actions">
-      <a class="btn btn--primary btn--sm" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener">
-        <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Agendar
-      </a>
-      <button class="site-header__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="nav-menu" data-label-open="Abrir menú" data-label-close="Cerrar menú" aria-label="Abrir menú">
-        <span class="bar" aria-hidden="true"></span>
-      </button>
+      <a class="btn btn--cta btn--sm" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Agendar</a>
+      <button class="site-header__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="nav-menu" data-label-open="Abrir menú" data-label-close="Cerrar menú" aria-label="Abrir menú"><span class="bar" aria-hidden="true"></span></button>
     </div>
   </header>
 
   <main id="main">
 
-    <!-- ============ INICIO ============ -->
+    <!-- ================= INICIO ================= -->
     <section id="inicio" class="hero" aria-labelledby="hero-title">
-      <svg class="doodle doodle--rainbow hide-sm" viewBox="0 0 100 64" aria-hidden="true" style="top:calc(var(--header-h) + 1rem);left:12%"><use href="#d-rainbow"/></svg>
-      <svg class="doodle doodle--star hide-sm" viewBox="0 0 24 24" aria-hidden="true" style="width:1.6rem;top:30%;left:48%"><use href="#d-star"/></svg>
-      <svg class="doodle doodle--star hide-sm" viewBox="0 0 24 24" aria-hidden="true" style="width:1rem;bottom:14%;left:6%"><use href="#d-star"/></svg>
-      <svg class="doodle doodle--dash hide-sm" viewBox="0 0 300 200" aria-hidden="true" style="width:16rem;bottom:2%;left:30%"><use href="#d-dash"/></svg>
-
+      <span class="sticker sticker--float hide-sm" style="--s:3.4rem;--r:8deg;top:calc(var(--header-h) + 1.2rem);left:44%" data-parallax="0.18" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-sparkle"/></svg></span>
+      <span class="sticker sticker--float hide-sm" style="--s:2.4rem;--r:-6deg;bottom:12%;left:3%;--bob:7s" data-parallax="0.1" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-heart"/></svg></span>
       <div class="container hero__grid">
-        <div class="hero__copy" data-reveal-group="fade-up" data-stagger="110">
-          <span class="pill"><svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-pin"/></svg>Dra. Martha Sánchez, pediatra en Guayaquil</span>
-          <h1 id="hero-title">Cuidado pediátrico cercano, desde el nacimiento hasta los 15 años.</h1>
-          <p class="lead">Consulta integral, vacunación y asesoría en lactancia y alimentación complementaria, en persona o por teleconsulta.</p>
-          <div class="hero__cta">
-            <a class="btn btn--primary" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20agendar%20una%20cita%20para%20mi%20hijo%2Fa." target="_blank" rel="noopener">
-              <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Agendar por WhatsApp
-            </a>
-            <a class="btn btn--ghost" href="#servicios">Ver servicios</a>
+        <div class="hero__copy">
+          <span class="tag" data-reveal="fade-up">Atención presencial y teleconsulta</span>
+          <h1 id="hero-title" data-split>
+            <span class="t-purple">Dra. Martha Sánchez</span>
+            <span class="t-pink">Pediatría</span>
+          </h1>
+          <p class="lead" data-reveal="fade-up" style="--reveal-delay:.35s">Consulta pediátrica integral del nacimiento a los 15 años, vacunación y asesoría en lactancia y alimentación complementaria. En Guayaquil y por teleconsulta.</p>
+          <div class="hero__cta" data-reveal="fade-up" style="--reveal-delay:.5s">
+            <a class="btn btn--cta" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20agendar%20una%20cita%20para%20mi%20hijo%2Fa." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Agendar consulta</a>
+            <a class="btn btn--outline" href="#servicios">Ver servicios</a>
           </div>
-          <ul class="hero__facts" role="list">
+          <ul class="hero__facts" role="list" data-reveal="fade-up" style="--reveal-delay:.65s">
             <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Lunes a sábado, previa cita</li>
             <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Ágora Medical Center</li>
           </ul>
         </div>
 
         <div class="hero__media" data-reveal="scale">
-          <svg class="doodle hero__ring" viewBox="0 0 400 400" fill="none" aria-hidden="true"><use href="#d-ring"/></svg>
-          <div class="hero__photo">
-            <img data-asset="hero" src="./assets/images/dra-martha-consultorio.jpg" alt="La doctora Martha Sánchez sonriendo, sentada en su consultorio pediátrico" width="640" height="1260" fetchpriority="high" decoding="async">
+          <div class="hero__star" data-parallax="0.06" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-star-pink"/></svg></div>
+          <div class="photo photo--arch">
+            <img data-asset="hero" src="./assets/images/martha-escritorio.jpg" alt="La doctora Martha Sánchez atendiendo en su consultorio pediátrico, con bata rosa y estetoscopio" width="910" height="1542" fetchpriority="high" decoding="async">
           </div>
-          <div class="hero__note">
-            <img data-asset="avatar" src="./assets/images/dra-martha-avatar.jpg" alt="" width="178" height="192" loading="lazy" decoding="async">
-            <p>Cuidando la salud de su mayor tesoro</p>
-          </div>
-          <svg class="doodle doodle--heart" viewBox="0 0 64 56" aria-hidden="true" style="width:2.6rem;top:6%;right:-2%;z-index:2"><use href="#d-heart"/></svg>
+          <p class="bubble">Cuidando la salud de su <b>mayor tesoro</b></p>
+          <span class="sticker sticker--float" style="--s:3.6rem;--r:12deg;top:0;right:-3%" data-parallax="0.14" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-flower-blue"/></svg></span>
+          <span class="sticker sticker--float" style="--s:5.4rem;--r:-4deg;bottom:-4%;right:-6%;--bob:7.5s" data-parallax="0.12" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-cloud"/></svg></span>
+          <span class="sticker sticker--float" style="--s:2.4rem;--r:14deg;top:42%;right:-9%;--bob:5s" data-parallax="0.2" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-heart-line"/></svg></span>
+          <span class="sticker sticker--float" style="--s:1.8rem;--r:-10deg;top:55%;right:-5%;--bob:6s" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-heart-line"/></svg></span>
         </div>
       </div>
     </section>
 
-    <!-- ============ SOBRE LA DOCTORA ============ -->
+    <!-- ================= DUDAS (panel morado) ================= -->
+    <section id="dudas" class="section" aria-labelledby="dudas-title">
+      <div class="container">
+        <div class="panel panel--purple on-dark" data-reveal="rise">
+          <div class="panel__grid">
+            <div class="panel__photo" data-reveal="fade-right">
+              <div class="photo"><img data-asset="panel" src="./assets/images/martha-recien-nacido.jpg" alt="La doctora Martha Sánchez pesando a un recién nacido en la balanza de su consultorio" width="888" height="1274" loading="lazy" decoding="async"></div>
+              <span class="sticker sticker--float" style="--s:3.6rem;--r:-8deg;top:-3%;right:-5%" data-parallax="0.1" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-sun"/></svg></span>
+            </div>
+            <div class="panel__copy">
+              <h2 data-reveal="fade-up">¿Tienes dudas sobre la <span class="t-lilac">salud o la alimentación</span> de tu hijo?</h2>
+              <ul class="chips" role="list" data-reveal-group="fade-left" data-stagger="90">
+                <li><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></span>Control del recién nacido</li>
+                <li><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></span>Enfermedades pediátricas</li>
+                <li><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></span>Alimentación complementaria</li>
+                <li><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></span>Lactancia, antes y después del parto</li>
+                <li><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></span>Vacunas según la edad</li>
+                <li><span class="dot"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></span>Seguimiento hasta los 15 años</li>
+              </ul>
+              <p data-reveal="fade-up">Una consulta con tiempo y buena explicación ayuda a resolverlas con calma. Agenda la tuya por WhatsApp.</p>
+              <a class="btn btn--cta" data-reveal="pop" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20tengo%20dudas%20sobre%20mi%20hijo%2Fa%20y%20quiero%20una%20cita." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Agendar consulta</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SERVICIOS (carrusel) ================= -->
+    <section id="servicios" class="section band band--soft" aria-labelledby="serv-title">
+      <span class="sticker sticker--float hide-sm" style="--s:3rem;--r:10deg;top:9%;right:9%" data-parallax="0.15" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-sparkle"/></svg></span>
+      <span class="sticker sticker--float hide-sm" style="--s:3.4rem;--r:-10deg;top:12%;left:7%;--bob:7s" data-parallax="0.1" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-flower"/></svg></span>
+      <div class="container">
+        <div class="section__head" data-reveal="fade-up">
+          <h2><span class="t-purple">Cuidado pediátrico en </span><span class="t-pink">cada etapa</span></h2>
+          <p>Del embarazo a la adolescencia: consulta, vacunas y asesorías para acompañar a tu familia. Desliza para verlos todos.</p>
+        </div>
+        <div class="carousel" data-carousel data-autoplay="4200" role="region" aria-roledescription="carrusel" aria-label="Servicios de la Dra. Martha Sánchez" data-reveal="fade-up">
+          <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Servicios anteriores" hidden><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
+          <div class="carousel__track" tabindex="0">
+            <article class="carousel__slide"><div class="svc">
+              <div class="svc__art" style="--a:#34b6b4;--b:#8fdcd9"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#s-stetho"/></svg></div>
+              <div class="svc__body"><h3>Consulta pediátrica integral</h3><p>Valoración y seguimiento de la salud de tu hijo, desde el nacimiento hasta los 15 años.</p>
+                <a class="svc__link" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20agendar%20una%20consulta%20pedi%C3%A1trica%20integral." target="_blank" rel="noopener">Agendar<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+            </div></article>
+            <article class="carousel__slide"><div class="svc">
+              <div class="svc__art" style="--a:#ff9a2e;--b:#ffc66f"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#s-syringe"/></svg></div>
+              <div class="svc__body"><h3>Aplicación de vacunas</h3><p>Vacunación en consulta, según la edad de tu hijo y su esquema.</p>
+                <a class="svc__link" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20consultar%20por%20la%20aplicaci%C3%B3n%20de%20vacunas." target="_blank" rel="noopener">Agendar<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+            </div></article>
+            <article class="carousel__slide"><div class="svc">
+              <div class="svc__art" style="--a:#ff6fa6;--b:#ffa8c9"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#s-spoon"/></svg></div>
+              <div class="svc__body"><h3>Alimentación complementaria</h3><p>Asesoría para iniciar y organizar la alimentación de tu bebé con seguridad.</p>
+                <a class="svc__link" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20una%20asesor%C3%ADa%20en%20alimentaci%C3%B3n%20complementaria." target="_blank" rel="noopener">Agendar<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+            </div></article>
+            <article class="carousel__slide"><div class="svc">
+              <div class="svc__art" style="--a:#9a70d1;--b:#c6aaf0"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#s-prenatal"/></svg></div>
+              <div class="svc__body"><h3>Asesoría prenatal en lactancia</h3><p>Prepara la lactancia antes de que nazca tu bebé y llega con tus dudas resueltas.</p>
+                <a class="svc__link" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20una%20asesor%C3%ADa%20prenatal%20en%20lactancia." target="_blank" rel="noopener">Agendar<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+            </div></article>
+            <article class="carousel__slide"><div class="svc">
+              <div class="svc__art" style="--a:#2a6fd6;--b:#7fb0f2"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#s-drop"/></svg></div>
+              <div class="svc__body"><h3>Asesoría en lactancia</h3><p>Acompañamiento y orientación durante la lactancia de tu bebé.</p>
+                <a class="svc__link" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20una%20asesor%C3%ADa%20en%20lactancia." target="_blank" rel="noopener">Agendar<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+            </div></article>
+            <article class="carousel__slide"><div class="svc">
+              <div class="svc__art" style="--a:#ff8a68;--b:#ffb59d"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#s-thermo"/></svg></div>
+              <div class="svc__body"><h3>Enfermedades pediátricas</h3><p>Atención y orientación cuando tu niño se enferma, con explicaciones claras para la familia.</p>
+                <a class="svc__link" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20una%20consulta%20por%20una%20enfermedad%20pedi%C3%A1trica." target="_blank" rel="noopener">Agendar<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+            </div></article>
+            <article class="carousel__slide"><div class="svc">
+              <div class="svc__art" style="--a:#188f90;--b:#5fd0cb"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#s-video"/></svg></div>
+              <div class="svc__body"><h3>Teleconsulta</h3><p>Asesoría desde casa para aclarar dudas sobre enfermedades de tu niño, alimentación y lactancia.</p>
+                <a class="svc__link" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20agendar%20una%20teleconsulta." target="_blank" rel="noopener">Agendar teleconsulta<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+            </div></article>
+          </div>
+          <button class="carousel__btn carousel__btn--next" type="button" aria-label="Más servicios" hidden><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+          <div class="carousel__dots carousel__dots--dark" data-dots></div>
+        </div>
+        <p style="margin:var(--space-md) auto 0;text-align:center;font-weight:700;color:var(--color-primary)" data-reveal="fade-up">Consulta presencial en Guayaquil o teleconsulta.</p>
+        <div style="display:flex;justify-content:center;margin-top:var(--space-md)" data-reveal="pop"><a class="btn btn--cta" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Agendar consulta</a></div>
+      </div>
+    </section>
+
+    <!-- ================= CÓMO AGENDAR ================= -->
+    <section id="como" class="section how" aria-labelledby="como-title">
+      <span class="sticker sticker--float hide-sm" style="--s:3.4rem;--r:8deg;top:7%;right:10%;--bob:5.5s" data-parallax="0.16" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-heart"/></svg></span>
+      <span class="sticker sticker--float hide-sm" style="--s:2.2rem;--r:-12deg;top:12%;right:6%;--bob:6.5s" data-parallax="0.22" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-heart"/></svg></span>
+      <span class="sticker sticker--float hide-sm" style="--s:5rem;--r:-14deg;top:20%;left:3%" data-parallax="0.12" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-flower"/></svg></span>
+      <div class="container">
+        <div class="section__head" data-reveal="fade-up">
+          <h2><span class="t-purple">¿Cómo agendar tu </span><span class="t-pink">consulta?</span></h2>
+          <p>La atención es previa cita. Son cuatro pasos y casi todo ocurre por WhatsApp.</p>
+        </div>
+        <div class="how__grid">
+          <div class="how__photo" data-reveal="scale">
+            <svg class="how__swirl" viewBox="0 0 400 500" aria-hidden="true" data-parallax="0.05"><use href="#st-swirl"/></svg>
+            <div class="photo"><img data-asset="how" src="./assets/images/dra-martha-consultorio.jpg" alt="La doctora Martha Sánchez sonriendo, sentada en su escritorio" width="640" height="1260" loading="lazy" decoding="async"></div>
+          </div>
+          <article class="step" data-reveal="fade-right"><div class="step__head"><span class="step__n">01</span><h3>Escríbenos por WhatsApp</h3></div><p>Al 097 953 0787. Cuéntanos la edad de tu hijo y el motivo de la consulta.</p></article>
+          <article class="step" data-reveal="fade-left"><div class="step__head"><span class="step__n">02</span><h3>Elige la modalidad</h3></div><p>Consulta presencial en el Edificio Ágora Medical Center, o teleconsulta desde casa.</p></article>
+          <article class="step" data-reveal="fade-right"><div class="step__head"><span class="step__n">03</span><h3>Confirma día y hora</h3></div><p>De lunes a sábado, en horario de mañana (8:00 a 13:00) o tarde (14:00 a 18:00).</p></article>
+          <article class="step" data-reveal="fade-left"><div class="step__head"><span class="step__n">04</span><h3>Conversa con la doctora</h3></div><p>Resuelve tus dudas sobre la salud, la lactancia y la alimentación de tu niño, con calma.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INSTAGRAM (panel coral + carrusel) ================= -->
+    <section id="instagram" class="section ig" aria-labelledby="ig-title">
+      <div class="container">
+        <div class="panel panel--coral on-dark" data-reveal="rise">
+          <div class="panel__grid panel__grid--stack">
+            <div class="section__head" style="margin-bottom:0" data-reveal="fade-up">
+              <h2 id="ig-title">Lo que comparte la Dra. en <span class="t-white" style="text-shadow:0 2px 0 rgb(0 0 0 / .12)">Instagram</span></h2>
+              <p>Videos cortos para que las familias entiendan mejor la salud de sus hijos.</p>
+            </div>
+            <div class="ig__box">
+              <div class="ig__side">
+                <span class="ig__logo"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></span>
+                <strong>@dra_marthasanchez</strong>
+                <span>Pediatra en Guayaquil</span>
+                <a class="btn btn--outline btn--sm" href="https://www.instagram.com/dra_marthasanchez/" target="_blank" rel="noopener">Seguirla</a>
+              </div>
+              <div class="carousel" data-carousel data-autoplay="3600" role="region" aria-roledescription="carrusel" aria-label="Temas de sus videos en Instagram">
+                <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Temas anteriores" hidden><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
+                <div class="carousel__track" tabindex="0">
+                  <article class="carousel__slide"><div class="topic"><div class="topic__top"><span class="topic__ico" style="--c:#ff6fa6"><svg class="icon icon--solid" aria-hidden="true"><use href="#i-play"/></svg></span><small>Video</small></div><h3>Lactancia materna desde el primer día</h3><a href="https://www.instagram.com/dra_marthasanchez/" target="_blank" rel="noopener">Verlo en Instagram<svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-arrow"/></svg></a></div></article>
+                  <article class="carousel__slide"><div class="topic"><div class="topic__top"><span class="topic__ico" style="--c:#34b6b4"><svg class="icon icon--solid" aria-hidden="true"><use href="#i-play"/></svg></span><small>Video</small></div><h3>¿Qué debo vigilar cuando mi hijo tiene gripe?</h3><a href="https://www.instagram.com/dra_marthasanchez/" target="_blank" rel="noopener">Verlo en Instagram<svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-arrow"/></svg></a></div></article>
+                  <article class="carousel__slide"><div class="topic"><div class="topic__top"><span class="topic__ico" style="--c:#ff9a2e"><svg class="icon icon--solid" aria-hidden="true"><use href="#i-play"/></svg></span><small>Video</small></div><h3>La importancia de la vacuna de hepatitis A</h3><a href="https://www.instagram.com/dra_marthasanchez/" target="_blank" rel="noopener">Verlo en Instagram<svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-arrow"/></svg></a></div></article>
+                  <article class="carousel__slide"><div class="topic"><div class="topic__top"><span class="topic__ico" style="--c:#7b4fc0"><svg class="icon icon--solid" aria-hidden="true"><use href="#i-play"/></svg></span><small>Video</small></div><h3>Revisión de la cabeza del bebé y plagiocefalia</h3><a href="https://www.instagram.com/dra_marthasanchez/" target="_blank" rel="noopener">Verlo en Instagram<svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-arrow"/></svg></a></div></article>
+                  <article class="carousel__slide"><div class="topic"><div class="topic__top"><span class="topic__ico" style="--c:#2a6fd6"><svg class="icon icon--solid" aria-hidden="true"><use href="#i-play"/></svg></span><small>Video</small></div><h3>Pecho materno a libre demanda</h3><a href="https://www.instagram.com/dra_marthasanchez/" target="_blank" rel="noopener">Verlo en Instagram<svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-arrow"/></svg></a></div></article>
+                  <article class="carousel__slide"><div class="topic"><div class="topic__top"><span class="topic__ico" style="--c:#ff8a68"><svg class="icon icon--solid" aria-hidden="true"><use href="#i-play"/></svg></span><small>Video</small></div><h3>Cómo es una consulta con la Dra. Martha</h3><a href="https://www.instagram.com/dra_marthasanchez/" target="_blank" rel="noopener">Verlo en Instagram<svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-arrow"/></svg></a></div></article>
+                </div>
+                <button class="carousel__btn carousel__btn--next" type="button" aria-label="Más temas" hidden><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+                <div class="carousel__dots carousel__dots--dark" data-dots></div>
+              </div>
+            </div>
+          </div>
+          <span class="sticker sticker--float hide-sm" style="--s:3rem;--r:10deg;top:6%;right:6%" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-sparkle"/></svg></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SOBRE LA DOCTORA ================= -->
     <section id="sobre" class="section" aria-labelledby="sobre-title">
       <div class="container about__grid">
         <div class="about__media" data-reveal="fade-right">
-          <svg class="doodle about__ring" viewBox="0 0 400 400" fill="none" aria-hidden="true"><use href="#d-ring"/></svg>
-          <div class="about__photo">
-            <img data-asset="about" src="./assets/images/dra-martha-bata.jpg" alt="La doctora Martha Sánchez con bata blanca y estetoscopio en su consultorio" width="956" height="1466" loading="lazy" decoding="async">
-          </div>
+          <svg class="wave" viewBox="0 0 400 500" aria-hidden="true" data-parallax="0.05"><use href="#st-wave"/></svg>
+          <div class="photo"><img data-asset="about" src="./assets/images/dra-martha-bata.jpg" alt="La doctora Martha Sánchez con bata blanca y estetoscopio, junto a los juguetes de su consultorio" width="956" height="1466" loading="lazy" decoding="async"></div>
+          <span class="sticker sticker--float" style="--s:5rem;--r:-8deg;bottom:-3%;left:-9%;--bob:7s" data-parallax="0.1" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-sun"/></svg></span>
+          <span class="sticker sticker--float" style="--s:3.8rem;--r:10deg;top:-1%;right:-6%" data-parallax="0.15" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-flower"/></svg></span>
         </div>
         <div class="about__copy" data-reveal-group="fade-up" data-stagger="100">
-          <h2 id="sobre-title">Pediatría con calidez y profesionalismo, en cada etapa.</h2>
-          <p>La Dra. Martha Sánchez es especialista en pediatría y atiende en Guayaquil a recién nacidos, niños y adolescentes hasta los 15 años. Orienta también a las familias en lactancia y en el inicio de la alimentación complementaria.</p>
-          <p>Cada consulta es personalizada y se agenda con anticipación, para que tengas tiempo de preguntar lo que necesites.</p>
-          <ul class="values" role="list">
-            <li><span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-baby"/></svg></span><div><strong>Desde el primer día</strong><span class="t">Control del niño sano y seguimiento del crecimiento y desarrollo.</span></div></li>
-            <li><span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></span><div><strong>Orientación para los padres</strong><span class="t">Lactancia, alimentación y dudas del día a día, explicadas con claridad.</span></div></li>
-            <li><span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-video"/></svg></span><div><strong>Presencial o teleconsulta</strong><span class="t">Elige la modalidad que mejor se adapte a tu familia.</span></div></li>
-          </ul>
+          <h2 class="t-purple">Dra. Martha Sánchez</h2>
+          <p class="about__role">Especialista en pediatría · Guayaquil, Ecuador</p>
+          <p>Atiende a recién nacidos, niños y adolescentes hasta los 15 años. También acompaña a las familias con asesoría en lactancia, incluida la prenatal, y en el inicio de la alimentación complementaria.</p>
+          <p>En su consulta y en sus videos de Instagram explica con calma y en lenguaje sencillo, para que cada familia se sienta segura al cuidar la salud de su mayor tesoro.</p>
+          <div class="facts">
+            <h3>Datos de la consulta</h3>
+            <ul>
+              <li>Pediatría, del nacimiento a los 15 años</li>
+              <li>Consulta presencial y teleconsulta</li>
+              <li>Lunes a sábado, previa cita</li>
+              <li>Edificio Ágora Medical Center, Guayaquil</li>
+            </ul>
+          </div>
+          <div><a class="btn btn--cta" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Agendar consulta</a></div>
         </div>
       </div>
     </section>
 
-    <!-- ============ SERVICIOS ============ -->
-    <section id="servicios" class="section section--blush" aria-labelledby="serv-title">
-      <svg class="doodle doodle--star hide-sm" viewBox="0 0 24 24" aria-hidden="true" style="width:1.4rem;top:8%;right:10%"><use href="#d-star"/></svg>
+    <!-- ================= PREGUNTAS ================= -->
+    <section id="preguntas" class="section band band--soft" aria-labelledby="faq-title">
       <div class="container">
         <div class="section__head" data-reveal="fade-up">
-          <h2 id="serv-title">Un servicio para cada etapa de la crianza.</h2>
-          <p>Del embarazo a la adolescencia: consulta, vacunas y asesorías pensadas para acompañar a tu familia.</p>
+          <h2 id="faq-title"><span class="t-purple">Preguntas </span><span class="t-pink">frecuentes</span></h2>
         </div>
-        <div class="services" data-reveal-group="fade-up" data-stagger="90">
-          <article class="card">
-            <span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-stetho"/></svg></span>
-            <h3>Consulta pediátrica integral</h3>
-            <p>Valoración y seguimiento de la salud de tu hijo desde el nacimiento hasta los 15 años.</p>
-            <a class="card__link" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20agendar%20una%20consulta%20pedi%C3%A1trica%20integral." target="_blank" rel="noopener">Agendar<svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-arrow"/></svg></a>
-          </article>
-          <article class="card">
-            <span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-syringe"/></svg></span>
-            <h3>Aplicación de vacunas</h3>
-            <p>Vacunación en consulta, según la edad de tu hijo y su esquema.</p>
-            <a class="card__link" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20consultar%20por%20la%20aplicaci%C3%B3n%20de%20vacunas." target="_blank" rel="noopener">Agendar<svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-arrow"/></svg></a>
-          </article>
-          <article class="card">
-            <span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-spoon"/></svg></span>
-            <h3>Alimentación complementaria</h3>
-            <p>Asesoría para iniciar y organizar la alimentación de tu bebé con seguridad.</p>
-            <a class="card__link" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20una%20asesor%C3%ADa%20en%20alimentaci%C3%B3n%20complementaria." target="_blank" rel="noopener">Agendar<svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-arrow"/></svg></a>
-          </article>
-          <article class="card">
-            <span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span>
-            <h3>Asesoría prenatal en lactancia</h3>
-            <p>Prepara la lactancia antes de que nazca tu bebé y llega con tus dudas resueltas.</p>
-            <a class="card__link" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20una%20asesor%C3%ADa%20prenatal%20en%20lactancia." target="_blank" rel="noopener">Agendar<svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-arrow"/></svg></a>
-          </article>
-          <article class="card">
-            <span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-drop"/></svg></span>
-            <h3>Asesoría en lactancia</h3>
-            <p>Acompañamiento y orientación durante la lactancia de tu bebé.</p>
-            <a class="card__link" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20una%20asesor%C3%ADa%20en%20lactancia." target="_blank" rel="noopener">Agendar<svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-arrow"/></svg></a>
-          </article>
-          <article class="card card--feature">
-            <span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-video"/></svg></span>
-            <h3>Teleconsulta</h3>
-            <p>Asesoría desde casa para aclarar dudas sobre enfermedades de tu niño, alimentación y lactancia.</p>
-            <a class="card__link" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20agendar%20una%20teleconsulta." target="_blank" rel="noopener">Agendar teleconsulta<svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-arrow"/></svg></a>
-          </article>
-        </div>
-        <div class="modes" data-reveal="fade-up">
-          <span class="pill"><svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-pin"/></svg>Consulta presencial en Guayaquil</span>
-          <span class="pill"><svg class="icon" aria-hidden="true" style="width:1rem;height:1rem"><use href="#i-video"/></svg>Teleconsulta</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CÓMO AGENDAR ============ -->
-    <section id="cita" class="section steps-band" aria-labelledby="cita-title">
-      <svg class="doodle doodle--heart hide-sm" viewBox="0 0 64 56" aria-hidden="true" style="width:3rem;top:12%;left:6%"><use href="#d-heart"/></svg>
-      <svg class="doodle doodle--dash hide-sm" viewBox="0 0 300 200" aria-hidden="true" style="width:14rem;bottom:4%;right:4%;color:#fff;opacity:.7"><use href="#d-dash"/></svg>
-      <div class="container steps-band__grid">
-        <div class="section__head" data-reveal="fade-right" style="margin-bottom:0">
-          <h2 id="cita-title">Agendar es sencillo y toma un minuto.</h2>
-          <p>La atención es previa cita. Escríbenos por WhatsApp y coordinamos el día y la modalidad que prefieras.</p>
-        </div>
-        <ol class="steps" data-reveal-group="fade-left" data-stagger="120">
-          <li><div><strong>Escríbenos por WhatsApp</strong><span>Al 097 953 0787, cuéntanos la edad de tu hijo y el motivo.</span></div></li>
-          <li><div><strong>Elige presencial o teleconsulta</strong><span>Según lo que necesites, en el consultorio o desde casa.</span></div></li>
-          <li><div><strong>Confirma tu día y hora</strong><span>De lunes a sábado, en horario de mañana o tarde.</span></div></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============ INSTAGRAM ============ -->
-    <section id="instagram" class="section" aria-labelledby="ig-title">
-      <div class="container ig__grid">
-        <div class="ig__copy" data-reveal="fade-up">
-          <h2 id="ig-title">Resuelve dudas antes de la consulta.</h2>
-          <p>En Instagram, la Dra. Martha comparte videos cortos para que las familias entiendan mejor la salud de sus hijos.</p>
-          <a class="btn btn--ghost" href="https://www.instagram.com/dra_marthasanchez/" target="_blank" rel="noopener">
-            <svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>Ver @dra_marthasanchez
-          </a>
-        </div>
-        <ul class="topics" role="list" data-reveal-group="scale" data-stagger="70" aria-label="Temas que comparte en Instagram">
-          <li>Lactancia materna desde el primer día</li>
-          <li>Qué vigilar cuando hay gripe</li>
-          <li>Importancia de la vacuna de hepatitis A</li>
-          <li>Revisión de la cabeza del bebé</li>
-          <li>Plagiocefalia: recomendaciones</li>
-          <li>Pecho materno a libre demanda</li>
-          <li>Cómo es una consulta con ella</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ PREGUNTAS ============ -->
-    <section id="preguntas" class="section section--white" aria-labelledby="faq-title">
-      <div class="container faq__grid faq">
-        <div>
-          <div class="section__head" data-reveal="fade-up">
-            <h2 id="faq-title">Preguntas frecuentes.</h2>
-          </div>
+        <div class="faq faq__grid">
           <div class="faq__list" data-reveal-group="fade-up" data-stagger="80">
-            <details name="faq" open>
-              <summary>¿Desde qué edad atiende la doctora?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-              <div class="answer"><p>La consulta pediátrica integral cubre desde el nacimiento hasta los 15 años.</p></div>
-            </details>
-            <details name="faq">
-              <summary>¿La consulta es presencial o virtual?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-              <div class="answer"><p>Ambas. Puedes venir al consultorio en el Edificio Ágora Medical Center, en Guayaquil, o tener una teleconsulta desde casa.</p></div>
-            </details>
-            <details name="faq">
-              <summary>¿Para qué sirve la teleconsulta?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-              <div class="answer"><p>Es una asesoría para aclarar tus dudas sobre enfermedades de tu niño y recibir orientación en alimentación y lactancia, entre otros temas.</p></div>
-            </details>
-            <details name="faq">
-              <summary>¿Necesito cita previa?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-              <div class="answer"><p>Sí. La atención es previa cita, de lunes a sábado de 8:00 a 13:00 y de 14:00 a 18:00.</p></div>
-            </details>
-            <details name="faq">
-              <summary>¿Cómo agendo una cita?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-              <div class="answer"><p>Escribe por WhatsApp al 097 953 0787 o completa el formulario de esta página: se abrirá un chat con tu mensaje listo para enviar.</p></div>
-            </details>
+            <details name="faq" open><summary>¿Desde qué edad atiende la doctora?<span class="chev"><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></span></summary><div class="answer"><p>La consulta pediátrica integral cubre desde el nacimiento hasta los 15 años.</p></div></details>
+            <details name="faq"><summary>¿La consulta es presencial o virtual?<span class="chev"><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></span></summary><div class="answer"><p>Ambas. Puedes venir al consultorio, en el Edificio Ágora Medical Center de Guayaquil, o tener una teleconsulta desde casa.</p></div></details>
+            <details name="faq"><summary>¿Para qué sirve la teleconsulta?<span class="chev"><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></span></summary><div class="answer"><p>Es una asesoría para aclarar tus dudas sobre enfermedades de tu niño y recibir orientación en alimentación y lactancia, entre otros temas.</p></div></details>
+            <details name="faq"><summary>¿Necesito cita previa?<span class="chev"><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></span></summary><div class="answer"><p>Sí. La atención es previa cita, de lunes a sábado de 8:00 a 13:00 y de 14:00 a 18:00.</p></div></details>
+            <details name="faq"><summary>¿Cómo agendo una cita?<span class="chev"><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></span></summary><div class="answer"><p>Escribe por WhatsApp al 097 953 0787 o completa el formulario al final de esta página: se abrirá un chat con tu mensaje listo para enviar.</p></div></details>
           </div>
-        </div>
-        <aside class="faq-aside" data-reveal="fade-left" aria-label="Contacto rápido">
-          <h3>¿Tienes otra pregunta?</h3>
-          <p>Escríbenos y te respondemos por WhatsApp.</p>
-          <a class="btn btn--light" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20tengo%20una%20pregunta." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Escribir por WhatsApp</a>
-        </aside>
-      </div>
-    </section>
-
-    <!-- ============ UBICACIÓN ============ -->
-    <section id="ubicacion" class="section section--blush" aria-labelledby="ubi-title">
-      <div class="container loc__grid">
-        <div class="loc__info" data-reveal="fade-right">
-          <h2 id="ubi-title">Dónde y cuándo atiende.</h2>
-          <ul class="loc__list" role="list">
-            <li><span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span><div><strong>Consultorio</strong><span class="t">Edificio Ágora Medical Center, Guayaquil, Ecuador</span></div></li>
-            <li><span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><div><strong>Horario de atención</strong><span class="t">Lunes a sábado, 8:00 a 13:00 y 14:00 a 18:00. Previa cita.</span></div></li>
-            <li><span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span><div><strong>Citas por WhatsApp</strong><span class="t"><a href="tel:+593979530787">097 953 0787</a></span></div></li>
-          </ul>
-          <div class="loc__cta">
-            <a class="btn btn--primary" href="https://www.google.com/maps/search/?api=1&amp;query=Edificio%20%C3%81gora%20Medical%20Center%20Guayaquil%20Ecuador" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Abrir en el mapa</a>
-          </div>
-        </div>
-        <div class="loc__map" data-reveal="fade-left">
-          <iframe title="Mapa: Edificio Ágora Medical Center, Guayaquil" src="https://www.google.com/maps?q=Edificio+%C3%81gora+Medical+Center+Guayaquil+Ecuador&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <aside class="faq-aside" data-reveal="fade-left" aria-label="Contacto rápido">
+            <span class="sticker sticker--float" style="--s:4.6rem;--r:8deg;top:-1.2rem;right:-.6rem" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-cloud"/></svg></span>
+            <h3>¿Tienes otra pregunta?</h3>
+            <p>Escríbenos y te respondemos por WhatsApp.</p>
+            <a class="btn btn--white btn--sm" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20tengo%20una%20pregunta." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Escribir</a>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- ============ AGENDA ============ -->
-    <section id="agenda" class="section book" aria-labelledby="book-title">
-      <svg class="doodle doodle--rainbow hide-sm" viewBox="0 0 100 64" aria-hidden="true" style="top:10%;right:8%;left:auto;width:6rem"><use href="#d-rainbow"/></svg>
-      <svg class="doodle doodle--star" viewBox="0 0 24 24" aria-hidden="true" style="width:1.4rem;bottom:12%;left:5%"><use href="#d-star"/></svg>
-      <div class="container book__grid">
-        <div class="book__copy" data-reveal="fade-up">
-          <h2 id="book-title">Agenda la cita de tu hijo.</h2>
-          <p>Completa los datos y se abrirá WhatsApp con tu mensaje listo. La doctora o su equipo te confirmarán el horario.</p>
-          <div class="book__who">
-            <img data-asset="avatar" src="./assets/images/dra-martha-avatar.jpg" alt="" width="178" height="192" loading="lazy" decoding="async">
-            <p><strong>Dra. Martha Sánchez</strong>Atención previa cita, de lunes a sábado.</p>
-          </div>
+    <!-- ================= ATENCIÓN ================= -->
+    <section id="atencion" class="section" aria-labelledby="atencion-title">
+      <div class="container">
+        <div class="section__head" data-reveal="fade-up">
+          <h2 id="atencion-title"><span class="t-purple">Atención presencial </span><span class="t-pink">y por teleconsulta</span></h2>
+          <p>Elige el formato que mejor se adapte a tu familia. Siempre previa cita.</p>
         </div>
-        <form class="form" id="form-cita" action="https://wa.me/593979530787" method="get" target="_blank" data-reveal="scale">
-          <div class="field">
-            <label for="f-nombre">Tu nombre</label>
-            <input id="f-nombre" name="nombre" type="text" autocomplete="name" required placeholder="Nombre y apellido">
+        <div class="places" data-reveal-group="fade-up" data-stagger="120">
+          <article class="place">
+            <h3 class="place__head">Guayaquil – Ecuador</h3>
+            <div class="place__body">
+              <div class="place__map"><iframe title="Mapa: Edificio Ágora Medical Center, Guayaquil" src="https://www.google.com/maps?q=Edificio+%C3%81gora+Medical+Center+Guayaquil+Ecuador&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+              <div class="place__row"><span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span><p><strong>Consultorio:</strong> Edificio Ágora Medical Center, Guayaquil</p></div>
+              <div class="place__row"><span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><p><strong>Horario:</strong> lunes a sábado, 8:00 a 13:00 y 14:00 a 18:00</p></div>
+              <div class="place__cta">
+                <a class="btn btn--cta btn--sm" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20agendar%20una%20consulta%20presencial." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Agendar</a>
+                <a class="btn btn--outline btn--sm" href="https://www.google.com/maps/search/?api=1&amp;query=Edificio%20%C3%81gora%20Medical%20Center%20Guayaquil%20Ecuador" target="_blank" rel="noopener">Abrir en el mapa</a>
+              </div>
+            </div>
+          </article>
+          <article class="place">
+            <h3 class="place__head">Teleconsulta – desde casa</h3>
+            <div class="place__body">
+              <div class="place__art"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#s-video"/></svg></div>
+              <div class="place__row"><span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-video"/></svg></span><p><strong>Para qué sirve:</strong> aclarar dudas sobre enfermedades de tu niño y recibir asesoría en alimentación y lactancia.</p></div>
+              <div class="place__row"><span class="ico"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span><p><strong>Cómo pedirla:</strong> por WhatsApp, al <a href="tel:+593979530787">097 953 0787</a></p></div>
+              <div class="place__cta">
+                <a class="btn btn--cta btn--sm" href="https://wa.me/593979530787?text=Hola%20Dra.%20Martha%2C%20quiero%20agendar%20una%20teleconsulta." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Agendar teleconsulta</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= AGENDA (formulario → WhatsApp) ================= -->
+    <section id="agenda" class="section" aria-labelledby="book-title">
+      <div class="container">
+        <div class="panel panel--purple on-dark" data-reveal="rise">
+          <div class="book__grid">
+            <div class="book__copy">
+              <h2 id="book-title" data-reveal="fade-up">Cuida hoy la salud de <span class="t-lilac">tu hijo</span></h2>
+              <p data-reveal="fade-up">Completa los datos y se abrirá WhatsApp con tu mensaje listo. La doctora o su equipo te confirmarán el horario.</p>
+              <div class="book__who" data-reveal="fade-up">
+                <img data-asset="face" src="./assets/images/martha-rostro.jpg" alt="" width="760" height="780" loading="lazy" decoding="async">
+                <p><strong>Dra. Martha Sánchez</strong>Atención previa cita, de lunes a sábado.</p>
+              </div>
+            </div>
+            <form class="form" id="form-cita" action="https://wa.me/593979530787" method="get" target="_blank" data-reveal="scale">
+              <div class="field"><label for="f-nombre">Tu nombre</label><input id="f-nombre" name="nombre" type="text" autocomplete="name" required placeholder="Nombre y apellido"></div>
+              <div class="field"><label for="f-motivo">¿Qué necesitas?</label>
+                <select id="f-motivo" name="motivo" required>
+                  <option value="una consulta pediátrica integral">Consulta pediátrica integral</option>
+                  <option value="la aplicación de vacunas">Aplicación de vacunas</option>
+                  <option value="una asesoría en alimentación complementaria">Alimentación complementaria</option>
+                  <option value="una asesoría prenatal en lactancia">Asesoría prenatal en lactancia</option>
+                  <option value="una asesoría en lactancia">Asesoría en lactancia</option>
+                  <option value="una consulta por una enfermedad pediátrica">Enfermedades pediátricas</option>
+                  <option value="una teleconsulta">Teleconsulta</option>
+                </select></div>
+              <div class="field"><label for="f-modalidad">Modalidad</label>
+                <select id="f-modalidad" name="modalidad"><option value="presencial">Presencial en el consultorio</option><option value="teleconsulta">Teleconsulta</option></select></div>
+              <div class="field"><label for="f-horario">Horario preferido</label>
+                <select id="f-horario" name="horario"><option value="la mañana (8:00 a 13:00)">Mañana, 8:00 a 13:00</option><option value="la tarde (14:00 a 18:00)">Tarde, 14:00 a 18:00</option></select></div>
+              <button class="btn btn--cta" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Continuar en WhatsApp</button>
+              <p class="hint">No guardamos tus datos: solo se usan para armar el mensaje.</p>
+            </form>
           </div>
-          <div class="field">
-            <label for="f-motivo">¿Qué necesitas?</label>
-            <select id="f-motivo" name="motivo" required>
-              <option value="una consulta pediátrica integral">Consulta pediátrica integral</option>
-              <option value="la aplicación de vacunas">Aplicación de vacunas</option>
-              <option value="una asesoría en alimentación complementaria">Alimentación complementaria</option>
-              <option value="una asesoría prenatal en lactancia">Asesoría prenatal en lactancia</option>
-              <option value="una asesoría en lactancia">Asesoría en lactancia</option>
-              <option value="una teleconsulta">Teleconsulta</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="f-modalidad">Modalidad</label>
-            <select id="f-modalidad" name="modalidad">
-              <option value="presencial">Presencial en el consultorio</option>
-              <option value="teleconsulta">Teleconsulta</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="f-horario">Horario preferido</label>
-            <select id="f-horario" name="horario">
-              <option value="la mañana (8:00 a 13:00)">Mañana, 8:00 a 13:00</option>
-              <option value="la tarde (14:00 a 18:00)">Tarde, 14:00 a 18:00</option>
-            </select>
-          </div>
-          <button class="btn btn--primary" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Continuar en WhatsApp</button>
-          <p class="hint">No guardamos tus datos: solo se usan para armar el mensaje.</p>
-        </form>
+          <span class="sticker sticker--float hide-sm" style="--s:4rem;--r:-10deg;top:5%;left:46%;--bob:7s" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-star-orange"/></svg></span>
+          <span class="sticker sticker--float hide-sm" style="--s:2.6rem;--r:12deg;bottom:7%;left:4%" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#st-sparkle"/></svg></span>
+        </div>
       </div>
     </section>
   </main>
@@ -372,12 +424,10 @@
   <footer class="site-footer">
     <div class="container">
       <div class="site-footer__grid">
-        <div>
-          <a class="brand" href="#inicio" aria-label="Volver al inicio">
-            <span class="brand__mark" aria-hidden="true">M<span>S</span></span>
-            <span class="brand__text"><strong>Dra. Martha Sánchez</strong><small>Especialista en pediatría · Guayaquil</small></span>
-          </a>
-        </div>
+        <a class="brand" href="#inicio" aria-label="Volver al inicio">
+          <span class="brand__mark" aria-hidden="true">M<span>S</span></span>
+          <span class="brand__text"><strong>Dra. Martha Sánchez</strong><small>Especialista en pediatría · Guayaquil</small></span>
+        </a>
         <div class="site-footer__social">
           <a href="https://www.instagram.com/dra_marthasanchez/" target="_blank" rel="noopener" aria-label="Instagram de la Dra. Martha Sánchez"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a>
           <a href="https://wa.me/593979530787" target="_blank" rel="noopener" aria-label="WhatsApp para agendar citas"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></a>
@@ -388,6 +438,6 @@
     </div>
   </footer>
 
-  <noscript><style>.site-header__menu{display:flex!important;position:static!important}</style></noscript>
+  <noscript><style>.site-header__menu{display:flex!important;position:static!important}.carousel__track{flex-wrap:wrap}</style></noscript>
 </body>
 </html>

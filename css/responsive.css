@@ -1,48 +1,57 @@
 /* responsive.css — mobile-first: estilos base = móvil; aquí solo se sube */
+@media (max-width: 29.99em) {
+  .site-header .brand__text { display: none; }
+  .btn { padding-inline: 1.3rem; }
+}
+@media (max-width: 47.99em) {
+  .hide-sm { display: none !important; }
+  .bubble { left: 0; max-width: 70%; }
+  .carousel__btn--prev { left: -0.2rem; } .carousel__btn--next { right: -0.2rem; }
+  .panel { border-radius: var(--radius-lg); }
+}
+
 @media (min-width: 40em) {
-  .services { grid-template-columns: repeat(2, 1fr); }
-  .hero__facts { grid-template-columns: repeat(2, auto); justify-content: start; gap: 0.6rem 1.75rem; }
-  .brand__text small { display: block; }
+  .places { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (min-width: 48em) {
-  .hero__grid { grid-template-columns: 1.1fr 0.9fr; gap: var(--space-xl); }
-  .about__grid { grid-template-columns: 0.85fr 1.15fr; gap: var(--space-xl); }
-  .steps-band__grid { grid-template-columns: 0.9fr 1.1fr; align-items: center; }
-  .ig__grid { grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
-  .faq__grid { grid-template-columns: 1.3fr 0.7fr; gap: var(--space-xl); }
+  .hero__grid { grid-template-columns: 1.05fr 0.95fr; gap: var(--space-xl); }
+  .panel__grid { grid-template-columns: 0.8fr 1.2fr; gap: var(--space-xl); }
+  .panel__grid--rev { grid-template-columns: 1.1fr 0.9fr; }
+  .about__grid { grid-template-columns: 0.9fr 1.1fr; gap: var(--space-xl); }
+  .faq__grid { grid-template-columns: 1.4fr 0.6fr; gap: var(--space-xl); }
   .faq-aside { position: sticky; top: calc(var(--header-h) + 1.5rem); }
-  .loc__grid { grid-template-columns: 0.85fr 1.15fr; }
+  .ig__box { grid-template-columns: 13rem 1fr; align-items: center; }
   .book__grid { grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
-  .site-footer__grid { grid-template-columns: 1fr auto; align-items: center; }
+  .site-footer__grid { grid-template-columns: 1fr auto; }
+  .carousel__slide { flex-basis: 17rem; }
+  .how__grid { grid-template-columns: 1fr 1fr; }
+  .how__photo { grid-column: 1 / -1; order: -1; }
 }
 
 @media (min-width: 64em) {
   .site-header__toggle { display: none; }
-  .js .site-header__menu, .site-header__menu {
-    display: flex; position: static; padding: 0; gap: 0.25rem; background: none; border: 0; box-shadow: none;
-  }
-  .site-header__menu a { padding: 0.5rem 0.85rem; font-family: var(--font-body); font-weight: 500; font-size: var(--text-sm); border: 0; border-radius: var(--radius-pill); }
-  .site-header__menu a:hover { background: var(--color-blush); }
-  .site-header { gap: var(--space-md); }
+  .site-header__menu, .js .site-header__menu { display: flex; position: static; padding: 0; gap: 0.2rem; background: none; box-shadow: none; border-radius: 0; }
+  .site-header__menu a { padding: 0.5rem 0.9rem; font-size: 1rem; border: 0; border-radius: var(--radius-pill); transition: background 0.25s, color 0.25s; }
+  .site-header__menu a:hover { background: var(--color-lilac); color: var(--color-primary-deep); }
   .site-header nav { margin-left: auto; }
-  .services { grid-template-columns: repeat(3, 1fr); }
-  .hero { padding-bottom: var(--space-2xl); }
-  .hero__grid { gap: var(--space-2xl); }
-  .hero__note { left: -12%; }
-}
-
-@media (max-width: 29.99em) {
-  .site-header .brand__text { display: none; }
-}
-
-@media (max-width: 39.99em) {
-  .brand__text small { display: none; }
-  .hero__note { left: 0; }
-  .doodle--rainbow { width: 4rem; }
-  .hide-sm { display: none; }
+  .how__grid { grid-template-columns: 1fr 0.9fr 1fr; grid-template-rows: auto auto; gap: var(--space-md) var(--space-lg); align-items: center; }
+  .how__photo { grid-column: 2; grid-row: 1 / span 2; order: 0; }
+  .how__grid .step:nth-of-type(1) { grid-column: 1; grid-row: 1; }
+  .how__grid .step:nth-of-type(2) { grid-column: 3; grid-row: 1; transform: translateY(-1.5rem); }
+  .how__grid .step:nth-of-type(3) { grid-column: 1; grid-row: 2; transform: translateY(1.5rem); }
+  .how__grid .step:nth-of-type(4) { grid-column: 3; grid-row: 2; }
+  .hero__media { width: min(100%, 28rem); }
+  .carousel__btn--prev { left: -1.4rem; } .carousel__btn--next { right: -1.4rem; }
 }
 
 @media (min-width: 90em) {
-  :root { --container: 78rem; }
+  :root { --container: 80rem; }
+}
+
+/* móvil: se desliza con el dedo; flechas ocultas para no tapar las tarjetas */
+@media (max-width: 47.99em) {
+  .carousel__btn { display: none; }
+  .hero__star { inset: -4% -4% auto auto; width: 78%; }
+  .about__media .wave { inset: -4% -8% -4% 20%; }
 }

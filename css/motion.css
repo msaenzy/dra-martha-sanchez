@@ -11,13 +11,21 @@
 .js [data-reveal="fade-down"]  { transform: translate3d(0, calc(var(--reveal-distance, 24px) * -1), 0); }
 .js [data-reveal="fade-left"]  { transform: translate3d(var(--reveal-distance, 24px), 0, 0); }
 .js [data-reveal="fade-right"] { transform: translate3d(calc(var(--reveal-distance, 24px) * -1), 0, 0); }
-.js [data-reveal="scale"]      { transform: scale(.96); }
+.js [data-reveal="scale"]      { transform: scale(.92) translate3d(0, 24px, 0); }
+.js [data-reveal="pop"]        { transform: scale(.4); transition-timing-function: var(--ease-pop); }
+.js [data-reveal="rise"]       { transform: translate3d(0, 60px, 0) scale(.94); }
+.js [data-reveal="rise"].from-top { transform: translate3d(0, -40px, 0) scale(.94); }
+.js [data-reveal="fade-up"].from-top { transform: translate3d(0, calc(var(--reveal-distance, 24px) * -1), 0); }
 .js [data-reveal="image"]      { opacity: 1; clip-path: inset(0 0 100% 0); }          /* cortina vertical */
 .js [data-reveal="image-x"]    { opacity: 1; clip-path: inset(0 100% 0 0); }          /* cortina horizontal */
 .js [data-reveal="text"]       { clip-path: inset(0 0 100% 0); transform: translate3d(0, 40%, 0); }
 
 .js [data-reveal].is-visible { opacity: 1; transform: none; clip-path: none; will-change: auto; }
 .js [data-reveal="image"].is-visible, .js [data-reveal="image-x"].is-visible, .js [data-reveal="text"].is-visible { clip-path: inset(0 0 0 0); }
+
+/* titular del hero: palabra por palabra */
+.js .split .w, .js [data-split] .w { display: inline-block; opacity: 0; transform: translate3d(0, .6em, 0) rotate(3deg); transition: opacity .7s var(--ease-out), transform .8s var(--ease-pop); transition-delay: calc(var(--i) * 80ms + 120ms); }
+.js [data-split].is-in .w { opacity: 1; transform: none; }
 
 /* Header que se oculta al bajar y reaparece al subir (el header es fixed/sticky: no hay salto de layout) */
 [data-header] { transition: transform var(--dur-nav, .35s) var(--ease-out, cubic-bezier(.2, .7, .2, 1)); }
@@ -31,4 +39,6 @@ html.menu-open { overflow: hidden; }
   .js [data-reveal] { opacity: 1 !important; transform: none !important; clip-path: none !important; }
   [data-header].is-hidden { transform: none; }
   [data-parallax] { transform: none !important; }
+  .js [data-split] .w { opacity: 1 !important; transform: none !important; }
+  .sticker--float, .sticker--spin svg { animation: none !important; }
 }

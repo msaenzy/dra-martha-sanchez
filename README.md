@@ -1,6 +1,6 @@
 # Dra. Martha Sánchez — Pediatra
 
-Sitio estático (HTML + CSS + JavaScript nativo, sin frameworks) de la Dra. Martha Sánchez (pediatra, Guayaquil), con la estética de una referencia de diseño. Mobile-first, accesible, con scroll reveals y navegación que se oculta al bajar y reaparece al subir. Se despliega solo en **GitHub Pages** con **GitHub Actions**.
+Sitio estático (HTML + CSS + JavaScript nativo, sin frameworks) de la Dra. Martha Sánchez (pediatra, Guayaquil), con la estética de una referencia de diseño. Mobile-first, accesible, con scroll reveals bidireccionales, carruseles y navegación que se oculta al bajar y reaparece al subir. Se despliega solo en **GitHub Pages** con **GitHub Actions**.
 
 ## Estructura
 

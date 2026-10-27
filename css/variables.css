@@ -1,37 +1,60 @@
 /* variables.css — design tokens · Dra. Martha Sánchez
-   Dirección: rosa empolvado + crema (referencia Helena Alencar / Bianca Bozzi),
-   con el amarillo del logo "MS" como único acento vivo. */
+   Dirección: pediatría lúdica pastel (paneles morado/rosa/turquesa/coral, stickers, tipografía redondeada).
+   Colores derivados de su marca real: amarillo + turquesa del logo MS, morado/naranja/azul de sus piezas. */
+
+/* Fuentes autoalojadas (sin depender de Google Fonts) */
+@font-face { font-family: "Fredoka"; font-style: normal; font-weight: 300 700; font-display: swap;
+  src: url("../assets/fonts/fredoka-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Fredoka"; font-style: normal; font-weight: 300 700; font-display: swap;
+  src: url("../assets/fonts/fredoka-latin-ext-wght-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Nunito"; font-style: normal; font-weight: 200 1000; font-display: swap;
+  src: url("../assets/fonts/nunito-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Nunito"; font-style: normal; font-weight: 200 1000; font-display: swap;
+  src: url("../assets/fonts/nunito-latin-ext-wght-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
 :root {
   /* color */
-  --color-bg: #fbf6f3;            /* crema cálida */
+  --color-bg: #fdf7fc;
   --color-surface: #ffffff;
-  --color-blush: #f8e6e3;         /* fondo de secciones suaves */
-  --color-blush-deep: #f1d3d0;
-  --color-primary: #a95f69;       /* rosa profundo: botones y texto de énfasis (AA con blanco) */
-  --color-primary-hover: #934e58;
-  --color-secondary: #d4a5a5;     /* rosa empolvado de la referencia: paneles grandes */
-  --color-accent: #f2b544;        /* amarillo del logo MS: estrellas y detalles mínimos */
-  --color-aqua: #55b7c9;          /* azul del logo MS: solo en la marca */
-  --color-text: #4a2e35;
-  --color-muted: #7b6168;
-  --color-border: #ebd5d2;
-  --color-on-primary: #ffffff;
+  --color-primary: #7b4fc0;        /* morado de títulos y paneles */
+  --color-primary-deep: #6a3fb0;
+  --color-secondary: #ff6fa6;      /* rosa de énfasis */
+  --color-accent: #ffc93c;         /* amarillo del logo MS */
+  --color-border: #eadcf3;
+  --color-muted: #6e6180;
+  --color-text: #3d2d52;
+  --color-teal: #34b6b4;           /* turquesa del logo */
+  --color-teal-deep: #188f90;
+  --color-teal-soft: #9ccfd3;
+  --color-coral: #ff8a68;
+  --color-orange: #ff9a2e;
+  --color-blue: #2a6fd6;
+  --color-lilac: #f3e8fb;
+  --color-pink-soft: #ffe6f0;
+  --color-green: #3aa655;
+  --color-green-deep: #2b8a45;
+  --panel-purple: linear-gradient(135deg, #9a70d1 0%, #7d55c2 100%);
+  --panel-coral: linear-gradient(135deg, #ff9d7d 0%, #ff7f5f 100%);
+  --page-wash: linear-gradient(180deg, #fff2f8 0%, #f6eafd 45%, #fdf7fc 100%);
 
   /* type */
-  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
-  --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
-  --font-hand: "Caveat", "Segoe Script", cursive;
+  --font-display: "Fredoka", "Nunito", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Nunito", "Segoe UI", system-ui, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
   --text-xs: 0.8125rem;
-  --text-sm: 0.9375rem;
+  --text-sm: 0.9688rem;
   --text-md: 1.0625rem;
-  --text-lg: clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem);
-  --text-xl: clamp(1.75rem, 1.2rem + 2.2vw, 2.9rem);
-  --text-display: clamp(2.3rem, 1.6rem + 3.4vw, 4.1rem);
-  --leading-tight: 1.05;
-  --leading-body: 1.6;
-  --tracking-display: -0.025em;
-  --tracking-label: 0.01em;
+  --text-lg: clamp(1.15rem, 1.02rem + 0.55vw, 1.4rem);
+  --text-xl: clamp(1.8rem, 1.25rem + 2.3vw, 3rem);
+  --text-display: clamp(2.5rem, 1.5rem + 4.2vw, 4.6rem);
+  --leading-tight: 1.08;
+  --leading-body: 1.65;
+  --tracking-display: -0.01em;
+  --tracking-label: 0.08em;
 
   /* space */
   --space-xs: 0.5rem;
@@ -40,29 +63,30 @@
   --space-lg: 2.5rem;
   --space-xl: 4rem;
   --space-2xl: 6rem;
-  --section-y: clamp(4rem, 3rem + 6vw, 8rem);
+  --section-y: clamp(3.5rem, 2.5rem + 5vw, 7rem);
 
   /* shape */
-  --radius-sm: 0.75rem;
-  --radius-md: 1.25rem;
-  --radius-lg: 2rem;
+  --radius-sm: 0.9rem;
+  --radius-md: 1.4rem;
+  --radius-lg: 2.2rem;
+  --radius-xl: 3rem;
   --radius-pill: 999px;
-  --shadow-sm: 0 1px 2px rgb(120 70 80 / 0.06), 0 4px 14px rgb(120 70 80 / 0.06);
-  --shadow-md: 0 10px 30px rgb(120 70 80 / 0.12);
-  --shadow-lg: 0 24px 60px rgb(120 70 80 / 0.18);
-  --border-w: 1px;
-  --blob-a: 58% 42% 55% 45% / 46% 56% 44% 54%;
-  --blob-b: 52% 48% 44% 56% / 30% 32% 68% 70%;
+  --shadow-sm: 0 2px 6px rgb(110 70 160 / 0.08), 0 6px 18px rgb(110 70 160 / 0.08);
+  --shadow-md: 0 12px 32px rgb(110 70 160 / 0.16);
+  --shadow-lg: 0 26px 60px rgb(90 50 140 / 0.24);
+  --shadow-cta: 0 10px 22px rgb(47 148 68 / 0.38);
+  --border-w: 1.5px;
 
   /* layout */
-  --container: 72rem;
+  --container: 74rem;
   --gutter: clamp(1.25rem, 5vw, 3rem);
   --grid-columns: 12;
   --header-h: 4.5rem;
 
   /* motion */
-  --dur-reveal: 0.9s;
+  --dur-reveal: 0.85s;
   --dur-nav: 0.35s;
   --ease-out: cubic-bezier(0.22, 0.7, 0.2, 1);
-  --reveal-distance: 22px;
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --reveal-distance: 34px;
 }
