@@ -1,0 +1,34 @@
+/* motion.css — reveals y scroll-direction. Ajusta duración/easing en variables.css (--dur-*, --ease-*).
+   Regla 8: el contenido NUNCA se oculta sin JS; solo se oculta bajo html.js. */
+.js [data-reveal] {
+  opacity: 0;
+  transition: opacity var(--dur-reveal, .8s) var(--ease-out, cubic-bezier(.2, .7, .2, 1)) var(--reveal-delay, 0s),
+              transform var(--dur-reveal, .8s) var(--ease-out, cubic-bezier(.2, .7, .2, 1)) var(--reveal-delay, 0s),
+              clip-path calc(var(--dur-reveal, .8s) * 1.2) var(--ease-out, cubic-bezier(.2, .7, .2, 1)) var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+.js [data-reveal="fade-up"]    { transform: translate3d(0, var(--reveal-distance, 24px), 0); }
+.js [data-reveal="fade-down"]  { transform: translate3d(0, calc(var(--reveal-distance, 24px) * -1), 0); }
+.js [data-reveal="fade-left"]  { transform: translate3d(var(--reveal-distance, 24px), 0, 0); }
+.js [data-reveal="fade-right"] { transform: translate3d(calc(var(--reveal-distance, 24px) * -1), 0, 0); }
+.js [data-reveal="scale"]      { transform: scale(.96); }
+.js [data-reveal="image"]      { opacity: 1; clip-path: inset(0 0 100% 0); }          /* cortina vertical */
+.js [data-reveal="image-x"]    { opacity: 1; clip-path: inset(0 100% 0 0); }          /* cortina horizontal */
+.js [data-reveal="text"]       { clip-path: inset(0 0 100% 0); transform: translate3d(0, 40%, 0); }
+
+.js [data-reveal].is-visible { opacity: 1; transform: none; clip-path: none; will-change: auto; }
+.js [data-reveal="image"].is-visible, .js [data-reveal="image-x"].is-visible, .js [data-reveal="text"].is-visible { clip-path: inset(0 0 0 0); }
+
+/* Header que se oculta al bajar y reaparece al subir (el header es fixed/sticky: no hay salto de layout) */
+[data-header] { transition: transform var(--dur-nav, .35s) var(--ease-out, cubic-bezier(.2, .7, .2, 1)); }
+[data-header].is-hidden { transform: translateY(-100%); }
+html.menu-open { overflow: hidden; }
+
+[data-parallax] { will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .js [data-reveal] { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+  [data-header].is-hidden { transform: none; }
+  [data-parallax] { transform: none !important; }
+}

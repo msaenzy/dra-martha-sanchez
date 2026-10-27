@@ -1,0 +1,48 @@
+/* responsive.css — mobile-first: estilos base = móvil; aquí solo se sube */
+@media (min-width: 40em) {
+  .services { grid-template-columns: repeat(2, 1fr); }
+  .hero__facts { grid-template-columns: repeat(2, auto); justify-content: start; gap: 0.6rem 1.75rem; }
+  .brand__text small { display: block; }
+}
+
+@media (min-width: 48em) {
+  .hero__grid { grid-template-columns: 1.1fr 0.9fr; gap: var(--space-xl); }
+  .about__grid { grid-template-columns: 0.85fr 1.15fr; gap: var(--space-xl); }
+  .steps-band__grid { grid-template-columns: 0.9fr 1.1fr; align-items: center; }
+  .ig__grid { grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
+  .faq__grid { grid-template-columns: 1.3fr 0.7fr; gap: var(--space-xl); }
+  .faq-aside { position: sticky; top: calc(var(--header-h) + 1.5rem); }
+  .loc__grid { grid-template-columns: 0.85fr 1.15fr; }
+  .book__grid { grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
+  .site-footer__grid { grid-template-columns: 1fr auto; align-items: center; }
+}
+
+@media (min-width: 64em) {
+  .site-header__toggle { display: none; }
+  .js .site-header__menu, .site-header__menu {
+    display: flex; position: static; padding: 0; gap: 0.25rem; background: none; border: 0; box-shadow: none;
+  }
+  .site-header__menu a { padding: 0.5rem 0.85rem; font-family: var(--font-body); font-weight: 500; font-size: var(--text-sm); border: 0; border-radius: var(--radius-pill); }
+  .site-header__menu a:hover { background: var(--color-blush); }
+  .site-header { gap: var(--space-md); }
+  .site-header nav { margin-left: auto; }
+  .services { grid-template-columns: repeat(3, 1fr); }
+  .hero { padding-bottom: var(--space-2xl); }
+  .hero__grid { gap: var(--space-2xl); }
+  .hero__note { left: -12%; }
+}
+
+@media (max-width: 29.99em) {
+  .site-header .brand__text { display: none; }
+}
+
+@media (max-width: 39.99em) {
+  .brand__text small { display: none; }
+  .hero__note { left: 0; }
+  .doodle--rainbow { width: 4rem; }
+  .hide-sm { display: none; }
+}
+
+@media (min-width: 90em) {
+  :root { --container: 78rem; }
+}

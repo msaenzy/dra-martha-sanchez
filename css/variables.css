@@ -1,0 +1,68 @@
+/* variables.css — design tokens · Dra. Martha Sánchez
+   Dirección: rosa empolvado + crema (referencia Helena Alencar / Bianca Bozzi),
+   con el amarillo del logo "MS" como único acento vivo. */
+:root {
+  /* color */
+  --color-bg: #fbf6f3;            /* crema cálida */
+  --color-surface: #ffffff;
+  --color-blush: #f8e6e3;         /* fondo de secciones suaves */
+  --color-blush-deep: #f1d3d0;
+  --color-primary: #a95f69;       /* rosa profundo: botones y texto de énfasis (AA con blanco) */
+  --color-primary-hover: #934e58;
+  --color-secondary: #d4a5a5;     /* rosa empolvado de la referencia: paneles grandes */
+  --color-accent: #f2b544;        /* amarillo del logo MS: estrellas y detalles mínimos */
+  --color-aqua: #55b7c9;          /* azul del logo MS: solo en la marca */
+  --color-text: #4a2e35;
+  --color-muted: #7b6168;
+  --color-border: #ebd5d2;
+  --color-on-primary: #ffffff;
+
+  /* type */
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --font-hand: "Caveat", "Segoe Script", cursive;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-md: 1.0625rem;
+  --text-lg: clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem);
+  --text-xl: clamp(1.75rem, 1.2rem + 2.2vw, 2.9rem);
+  --text-display: clamp(2.3rem, 1.6rem + 3.4vw, 4.1rem);
+  --leading-tight: 1.05;
+  --leading-body: 1.6;
+  --tracking-display: -0.025em;
+  --tracking-label: 0.01em;
+
+  /* space */
+  --space-xs: 0.5rem;
+  --space-sm: 0.875rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --section-y: clamp(4rem, 3rem + 6vw, 8rem);
+
+  /* shape */
+  --radius-sm: 0.75rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 2rem;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgb(120 70 80 / 0.06), 0 4px 14px rgb(120 70 80 / 0.06);
+  --shadow-md: 0 10px 30px rgb(120 70 80 / 0.12);
+  --shadow-lg: 0 24px 60px rgb(120 70 80 / 0.18);
+  --border-w: 1px;
+  --blob-a: 58% 42% 55% 45% / 46% 56% 44% 54%;
+  --blob-b: 52% 48% 44% 56% / 30% 32% 68% 70%;
+
+  /* layout */
+  --container: 72rem;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --grid-columns: 12;
+  --header-h: 4.5rem;
+
+  /* motion */
+  --dur-reveal: 0.9s;
+  --dur-nav: 0.35s;
+  --ease-out: cubic-bezier(0.22, 0.7, 0.2, 1);
+  --reveal-distance: 22px;
+}
