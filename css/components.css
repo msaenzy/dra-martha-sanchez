@@ -317,3 +317,40 @@ html, body { overflow-x: clip; }
 .hero__facts li a:focus-visible { outline: 3px solid var(--color-secondary); outline-offset: 2px; }
 .hero__facts li a:hover .icon { background: var(--color-secondary); color: #fff; }
 .hero__facts .icon { transition: background .25s, color .25s; }
+
+/* v4.5 — botón de WhatsApp del header: discreto y elegante (no compite con el logo) */
+.btn-wa { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.5rem; padding: .3rem .95rem .3rem .3rem; border-radius: var(--radius-pill); background: #ecf8f0; color: #23814a; text-decoration: none; font-family: var(--font-display); font-weight: 600; font-size: .92rem; letter-spacing: .01em; box-shadow: inset 0 0 0 1px #cfeedb; transition: background .3s, color .3s, box-shadow .3s, transform .3s var(--ease-pop); white-space: nowrap; }
+.btn-wa__ico { display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: #2fa85a; color: #fff; transition: transform .4s var(--ease-pop); }
+.btn-wa__ico .icon { width: 1.05rem; height: 1.05rem; stroke-width: 2.2; }
+.btn-wa:hover, .btn-wa:focus-visible { background: #2fa85a; color: #fff; box-shadow: 0 6px 16px rgb(47 168 90 / .25); transform: translateY(-1px); }
+.btn-wa:hover .btn-wa__ico { background: #fff; color: #2fa85a; transform: rotate(-8deg); }
+.btn-wa:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+@media (max-width: 29.99em) { .btn-wa { padding-right: .8rem; font-size: .88rem; } }
+
+/* v4.5 — botones verdes del resto de la página: más finos, sin mayúsculas sostenidas ni sombras pesadas */
+.btn { text-transform: none; letter-spacing: .01em; font-size: 1.02rem; }
+.btn--sm { font-size: .92rem; }
+.btn--cta { background: linear-gradient(180deg, #3cb466 0%, #2c9d55 100%); box-shadow: 0 6px 16px rgb(44 157 85 / .24); text-shadow: none; }
+.btn--cta:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgb(44 157 85 / .3); }
+
+/* v4.6 — menú móvil: margen interno correcto y estilo más cuidado */
+@media (max-width: 63.99em) {
+  .site-header ul.site-header__menu[role="list"] {
+    left: var(--gutter); right: var(--gutter); top: calc(100% + .5rem);
+    padding: .75rem; gap: .25rem;
+    border-radius: var(--radius-lg); border: 1px solid var(--color-border);
+    box-shadow: 0 18px 40px rgb(90 50 140 / .18);
+  }
+  .site-header__menu a {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: .7rem 1.1rem; border-bottom: 0; border-radius: var(--radius-sm);
+    font-size: 1.15rem; transition: background .25s, color .25s;
+  }
+  .site-header__menu a::after { content: "→"; font-size: 1rem; opacity: .45; transition: opacity .25s, translate .25s; }
+  .site-header__menu a:hover, .site-header__menu a:focus-visible { background: var(--color-lilac); color: var(--color-primary-deep); }
+  .site-header__menu a:hover::after { opacity: 1; translate: 3px 0; }
+  .site-header__menu li + li { border-top: 1px dashed var(--color-border); }
+  .js .site-header[data-menu-open="true"] .site-header__menu { animation: menu-in .35s var(--ease-out); }
+}
+@keyframes menu-in { from { opacity: 0; transform: translateY(-8px) scale(.98); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .js .site-header[data-menu-open="true"] .site-header__menu { animation: none; } }
