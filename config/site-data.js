@@ -1,7 +1,7 @@
 // config/site-data.js — conexión con el Panel web (Google Sheets + Apps Script).
 // 1) Implementa el Apps Script como Aplicación web y pega aquí la URL que termina en /exec.
 // 2) Deja "" para desactivar la conexión: la web muestra los datos escritos en index.html.
-export const SHEET_API_URL = "";
+export const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbzCUOwqyuiVlI-Xn1mvPnW7Gki-fEo9QOMrJmehuutePge6NbvEBnrYrYD6Y-NsiNto/exec";
 
 // Valores que hoy están escritos en index.html. NO los cambies aquí:
 // sirven para encontrar y reemplazar el texto por lo que diga el Google Sheet.
