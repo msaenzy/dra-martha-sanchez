@@ -26,7 +26,8 @@ const APP = {
   maxIntentos: 5,                        // intentos fallidos antes de bloquear
   bloqueoSegundos: 15 * 60,              // 15 minutos de bloqueo
   iteracionesHash: 400,
-  cacheApiSegundos: 300,                 // la API pública se cachea 5 minutos
+  cacheApiSegundos: 60,                  // la API pública se cachea 1 minuto (se borra al guardar)
+  version: 'v5.3',
   usuarioInicial: 'admin',
   contrasenaInicial: 'Pediatria2026!'    // se obliga a cambiarla en el primer ingreso
 };
@@ -67,7 +68,7 @@ function doGet(e) {
   const p = (e && e.parameter) || {};
 
   // API pública para la página web: .../exec?api=config
-  if (p.api === 'config') return respuestaJson_(apiConfigPublica_());
+  if (p.api === 'config') return respuestaJson_(apiConfigPublica_(p.nocache === '1'));
 
   return HtmlService.createHtmlOutputFromFile('Index')
     .setTitle(APP.nombre)
@@ -180,7 +181,7 @@ function obtenerPanel(token) {
       grupos: ['Contacto', 'Ubicación', 'Horario', 'Redes'],
       ultimaActualizacion: fechas.length ? fechas[fechas.length - 1] : '',
       sitioWeb: APP.sitioWeb,
-      apiUrl: apiBase ? apiBase + '?api=config' : ''
+      apiUrl: apiBase ? apiBase + '?api=config&nocache=1' : ''
     });
   } catch (err) {
     return error_(err);
@@ -346,11 +347,16 @@ function restablecerContrasena(token, usuario, nueva) {
 /* ---------------------------------------------------------------------------
  * 6. API PÚBLICA PARA LA WEB
  * ------------------------------------------------------------------------- */
-function apiConfigPublica_() {
+function apiConfigPublica_(sinCache) {
+  const t0 = Date.now();
   try {
     const cache = CacheService.getScriptCache();
-    const enCache = cache.get('api_config');
-    if (enCache) return JSON.parse(enCache);
+    const enCache = sinCache ? null : cache.get('api_config');
+    if (enCache) {
+      const r = JSON.parse(enCache);
+      r.meta.origen = 'cache'; r.meta.ms = Date.now() - t0;
+      return r;
+    }
 
     const data = {};
     let actualizado = '';
@@ -360,16 +366,29 @@ function apiConfigPublica_() {
       if (c.actualizado > actualizado) actualizado = c.actualizado;
     });
     if (data.telefono) {                       // derivados listos para usar (una sola fuente: "telefono")
+      data.telefono = normalizarTelefono_(data.telefono) || data.telefono;
       data.telefono_visible = telefonoVisible_(data.telefono);
-      data.whatsapp_url = 'https://wa.me/' + data.telefono;
-      data.tel_url = 'tel:+' + data.telefono;
     }
-    const respuesta = { ok: true, data: data, actualizado: actualizado };
+    const respuesta = {
+      ok: true,
+      data: data,
+      actualizado: actualizado,
+      meta: { version: APP.version, generado: ahora_(), claves: Object.keys(data).length, origen: 'hoja', ms: 0 }
+    };
     cache.put('api_config', JSON.stringify(respuesta), APP.cacheApiSegundos);
+    respuesta.meta.ms = Date.now() - t0;
     return respuesta;
   } catch (err) {
-    return { ok: false, error: 'No se pudo leer la configuración.' };
+    console.error(err && err.stack ? err.stack : err);
+    return { ok: false, error: 'No se pudo leer la configuración: ' + (err && err.message ? err.message : err), meta: { version: APP.version } };
   }
+}
+
+/** Si alguien edita la pestaña Config directamente en el Sheet, la web se entera al instante. */
+function onEdit(e) {
+  try {
+    if (e && e.range && e.range.getSheet().getName() === HOJAS.config.nombre) CacheService.getScriptCache().remove('api_config');
+  } catch (err) { /* nunca romper la edición */ }
 }
 
 function respuestaJson_(obj) {

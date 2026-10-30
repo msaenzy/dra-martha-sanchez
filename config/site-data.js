@@ -1,5 +1,6 @@
 // config/site-data.js — conexión con el Panel web (Google Sheets + Apps Script).
 // 1) Implementa el Apps Script como Aplicación web y pega aquí la URL que termina en /exec.
+// Diagnóstico: abre la web con ?debug=1 o mira la consola (F12) → mensajes [Panel web].
 // 2) Deja "" para desactivar la conexión: la web muestra los datos escritos en index.html.
 export const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbzCUOwqyuiVlI-Xn1mvPnW7Gki-fEo9QOMrJmehuutePge6NbvEBnrYrYD6Y-NsiNto/exec";
 

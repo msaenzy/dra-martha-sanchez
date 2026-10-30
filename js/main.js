@@ -3,7 +3,7 @@ import { assets } from "../config/assets.js";
 import { initNavigation } from "./navigation.js";
 import { initAnimations } from "./animations.js";
 import { initCarousels } from "./carousel.js";
-import { initSiteData, siteData } from "./site-data.js";
+import { initSiteData, siteData } from "./site-data.js?v=5.3";
 
 // <html data-base="./"> en la raíz, "../" en pages/*.html
 const base = document.documentElement.dataset.base || "./";

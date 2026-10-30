@@ -363,7 +363,7 @@
               <ul class="pv__list" id="pvList"></ul>
             </div>
             <div class="tests" id="tests"></div>
-            <div class="status" id="apiStatus"><span class="dot"></span><span>La web lee estos datos automáticamente.</span></div>
+            <div class="status" id="apiStatus"><span class="dot"></span><span>La web lee estos datos automáticamente. <a id="lnkApi" href="#" target="_blank" rel="noopener">Ver lo que recibe la web</a></span></div>
           </aside>
         </div>
       </section>
@@ -520,6 +520,7 @@
           S.original = {}; S.campos.forEach(c => (S.original[c.clave] = c.valor));
           pintarUsuario(); pintarGrupos(); pintarPreview(); actualizarFecha(res.ultimaActualizacion);
           $('#lnkWeb').href = S.sitio;
+          if (S.apiUrl) $('#lnkApi').href = S.apiUrl; else $('#lnkApi').textContent = '(implementa la Aplicación web para ver la API)';
           $('#tabUsers').classList.toggle('hidden', S.user.rol !== 'admin');
           mostrar('app');
           if (primeraVez) toast('ok', '¡Bienvenida/o!', 'Ya puedes editar la información de la web.');
