@@ -10,6 +10,8 @@
  *    guardarCambios, restaurarCampo, obtenerBitacora, cambiarContrasena,
  *    listarUsuarios, crearUsuario, actualizarUsuario, restablecerContrasena.
  *  • Funciones que terminan en "_" son PRIVADAS (no se pueden llamar desde el navegador).
+ *  • Usuarios y contraseñas se guardan en la pestaña Usuarios (columna Contrasena), a pedido de la
+ *    dueña del Sheet. El Sheet debe ser PRIVADO: no lo compartas ni lo publiques en la web.
  *  Diseñado por SPONDYLUS Soluciones Digitales.
  * ============================================================================
  */
@@ -25,16 +27,15 @@ const APP = {
   sesionSegundos: 6 * 60 * 60,          // 6 horas (máximo permitido por CacheService)
   maxIntentos: 5,                        // intentos fallidos antes de bloquear
   bloqueoSegundos: 15 * 60,              // 15 minutos de bloqueo
-  iteracionesHash: 400,
   cacheApiSegundos: 60,                  // la API pública se cachea 1 minuto (se borra al guardar)
   version: 'v5.3',
   usuarioInicial: 'admin',
-  contrasenaInicial: 'Pediatria2026!'    // se obliga a cambiarla en el primer ingreso
+  contrasenaInicial: 'Pediatria2026!'    // queda guardada en la pestaña Usuarios (columna Contrasena)
 };
 
 const HOJAS = {
   config:   { nombre: 'Config',   columnas: ['Clave', 'Valor', 'Etiqueta', 'Grupo', 'Tipo', 'Requerido', 'Publico', 'Ayuda', 'PorDefecto', 'Orden', 'Actualizado', 'ActualizadoPor'] },
-  usuarios: { nombre: 'Usuarios', columnas: ['Usuario', 'Nombre', 'Rol', 'Activo', 'Hash', 'Salt', 'DebeCambiar', 'UltimoAcceso', 'Creado'] },
+  usuarios: { nombre: 'Usuarios', columnas: ['Usuario', 'Contrasena', 'Nombre', 'Rol', 'Activo', 'DebeCambiar', 'UltimoAcceso', 'Creado'] },
   bitacora: { nombre: 'Bitacora', columnas: ['Fecha', 'Usuario', 'Accion', 'Clave', 'ValorAnterior', 'ValorNuevo'] }
 };
 
@@ -87,9 +88,9 @@ function onOpen() {
 }
 
 function menuInicializar() {
-  PropertiesService.getScriptProperties().deleteProperty('INIT_V2'); // fuerza la verificación completa
+  PropertiesService.getScriptProperties().deleteProperty('INIT_V3'); // fuerza la verificación completa
   inicializarHoja_();
-  SpreadsheetApp.getUi().alert('Listo ✅\n\nHojas verificadas.\nUsuario inicial: ' + APP.usuarioInicial + '\nContraseña inicial: ' + APP.contrasenaInicial + '\n(se pedirá cambiarla en el primer ingreso).');
+  SpreadsheetApp.getUi().alert('Listo ✅\n\nHojas verificadas.\nLos usuarios y contraseñas están en la pestaña Usuarios.');
 }
 
 function menuVerEnlaces() {
@@ -116,7 +117,7 @@ function login(usuario, contrasena) {
     if (intentos >= APP.maxIntentos) return fallo_('Demasiados intentos. Espera 15 minutos e inténtalo de nuevo.');
 
     const u = buscarUsuario_(usuario);
-    if (!u || !esVerdadero_(u.datos.Activo) || hash_(contrasena, u.datos.Salt) !== u.datos.Hash) {
+    if (!u || !esVerdadero_(u.datos.Activo) || String(u.datos.Contrasena) !== contrasena) {
       cache.put(claveIntentos, String(intentos + 1), APP.bloqueoSegundos);
       Utilities.sleep(400); // frena ataques de fuerza bruta
       return fallo_('Usuario o contraseña incorrectos.');
@@ -150,14 +151,12 @@ function cambiarContrasena(token, actual, nueva) {
     const s = validarSesion_(token);
     const u = buscarUsuario_(s.usuario);
     if (!u) return fallo_('Usuario no encontrado.');
-    if (hash_(String(actual || ''), u.datos.Salt) !== u.datos.Hash) return fallo_('La contraseña actual no es correcta.');
+    if (String(u.datos.Contrasena) !== String(actual || '')) return fallo_('La contraseña actual no es correcta.');
     const problema = validarContrasena_(nueva);
     if (problema) return fallo_(problema);
 
-    const salt = Utilities.getUuid();
     const fila = u.fila, h = u.hoja;
-    h.getRange(fila, columna_(HOJAS.usuarios, 'Hash')).setValue(hash_(nueva, salt));
-    h.getRange(fila, columna_(HOJAS.usuarios, 'Salt')).setValue(salt);
+    h.getRange(fila, columna_(HOJAS.usuarios, 'Contrasena')).setValue(String(nueva));
     h.getRange(fila, columna_(HOJAS.usuarios, 'DebeCambiar')).setValue('NO');
     registrar_(s.usuario, 'Cambió su contraseña', '', '', '');
     return ok_({ mensaje: 'Contraseña actualizada.' });
@@ -280,9 +279,10 @@ function listarUsuarios(token) {
     const hoja = hoja_(HOJAS.usuarios);
     const filas = hoja.getDataRange().getDisplayValues().slice(1);
     return ok_({
-      usuarios: filas.filter(r => r[0]).map(r => ({
-        usuario: r[0], nombre: r[1], rol: r[2], activo: esVerdadero_(r[3]), ultimoAcceso: r[7]
-      }))
+      usuarios: filas.filter(r => r[0]).map(r => {
+        const o = filaAObjeto_(HOJAS.usuarios, r);
+        return { usuario: o.Usuario, nombre: o.Nombre, rol: o.Rol, activo: esVerdadero_(o.Activo), ultimoAcceso: o.UltimoAcceso };
+      })
     });
   } catch (err) {
     return error_(err);
@@ -299,8 +299,7 @@ function crearUsuario(token, datos) {
     const problema = validarContrasena_(datos.contrasena);
     if (problema) return fallo_(problema);
     const rol = datos.rol === 'admin' ? 'admin' : 'editor';
-    const salt = Utilities.getUuid();
-    hoja_(HOJAS.usuarios).appendRow([usuario, String(datos.nombre || usuario).trim(), rol, 'SI', hash_(datos.contrasena, salt), salt, 'SI', '', ahora_()]);
+    hoja_(HOJAS.usuarios).appendRow([usuario, String(datos.contrasena), String(datos.nombre || usuario).trim(), rol, 'SI', 'SI', '', ahora_()]);
     registrar_(s.usuario, 'Creó usuario', usuario, '', rol);
     return listarUsuarios(token);
   } catch (err) {
@@ -333,9 +332,7 @@ function restablecerContrasena(token, usuario, nueva) {
     if (!u) return fallo_('Usuario no encontrado.');
     const problema = validarContrasena_(nueva);
     if (problema) return fallo_(problema);
-    const salt = Utilities.getUuid();
-    u.hoja.getRange(u.fila, columna_(HOJAS.usuarios, 'Hash')).setValue(hash_(nueva, salt));
-    u.hoja.getRange(u.fila, columna_(HOJAS.usuarios, 'Salt')).setValue(salt);
+    u.hoja.getRange(u.fila, columna_(HOJAS.usuarios, 'Contrasena')).setValue(String(nueva));
     u.hoja.getRange(u.fila, columna_(HOJAS.usuarios, 'DebeCambiar')).setValue('SI');
     registrar_(s.usuario, 'Restableció contraseña', u.datos.Usuario, '', '');
     return ok_({ mensaje: 'Contraseña restablecida. Se pedirá cambiarla al ingresar.' });
@@ -400,13 +397,15 @@ function respuestaJson_(obj) {
  * ------------------------------------------------------------------------- */
 function inicializarHoja_() {
   const props = PropertiesService.getScriptProperties();
-  if (props.getProperty('INIT_V2') === 'OK' && hojasExisten_()) return;
+  if (props.getProperty('INIT_V3') === 'OK' && hojasExisten_()) return;
 
   const lock = LockService.getScriptLock();
   lock.waitLock(15000);
   try {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     ss.setSpreadsheetTimeZone(APP.zonaHoraria);
+
+    migrarUsuariosConHash_(ss);
 
     Object.keys(HOJAS).forEach(k => {
       const def = HOJAS[k];
@@ -432,19 +431,16 @@ function inicializarHoja_() {
 
     // Usuarios: crea el administrador inicial si no hay ninguno
     const hu = ss.getSheetByName(HOJAS.usuarios.nombre);
-    hu.getRange('E:F').setNumberFormat('@'); // Hash y Salt como texto (evita que Sheets los convierta a número)
-    hu.getRange('H:I').setNumberFormat('@');
+    hu.getRange('A:H').setNumberFormat('@'); // todo como texto: contraseñas numéricas no se convierten en números
     ss.getSheetByName(HOJAS.bitacora.nombre).getRange('A:F').setNumberFormat('@');
     if (hu.getLastRow() < 2) {
-      const salt = Utilities.getUuid();
-      hu.appendRow([APP.usuarioInicial, 'Administración', 'admin', 'SI', hash_(APP.contrasenaInicial, salt), salt, 'SI', '', ahora_()]);
+      hu.appendRow([APP.usuarioInicial, APP.contrasenaInicial, 'Administración', 'admin', 'SI', 'NO', '', ahora_()]);
     }
-    hu.hideColumns(columna_(HOJAS.usuarios, 'Hash'), 2); // oculta Hash y Salt
 
     const sobrante = ss.getSheetByName('Hoja 1') || ss.getSheetByName('Sheet1');
     if (sobrante && ss.getSheets().length > 3 && sobrante.getLastRow() === 0) ss.deleteSheet(sobrante);
 
-    props.setProperty('INIT_V2', 'OK');
+    props.setProperty('INIT_V3', 'OK');
   } finally {
     lock.releaseLock();
   }
@@ -469,6 +465,23 @@ function migrarClavesObsoletas_(hc) {
   for (let i = claves.length - 1; i >= 0; i--) {
     if (Object.prototype.hasOwnProperty.call(CLAVES_OBSOLETAS, claves[i])) hc.deleteRow(i + 2);
   }
+}
+
+/** Versiones anteriores guardaban Hash/Salt. Se pasa al formato nuevo (Contrasena visible).
+ *  Como un hash no se puede revertir, a esos usuarios se les asigna la contraseña inicial. */
+function migrarUsuariosConHash_(ss) {
+  const h = ss.getSheetByName(HOJAS.usuarios.nombre);
+  if (!h || h.getLastColumn() < 1) return;
+  const enc = h.getRange(1, 1, 1, h.getLastColumn()).getValues()[0];
+  if (enc.indexOf('Hash') === -1) return;
+  const filas = h.getLastRow() > 1 ? h.getRange(2, 1, h.getLastRow() - 1, enc.length).getDisplayValues() : [];
+  const idx = n => enc.indexOf(n);
+  const nuevas = filas.filter(r => r[0]).map(r => [r[idx('Usuario')], APP.contrasenaInicial, r[idx('Nombre')], r[idx('Rol')], r[idx('Activo')], 'SI', r[idx('UltimoAcceso')] || '', r[idx('Creado')] || '']);
+  h.showColumns(1, h.getMaxColumns());
+  h.clear();
+  h.getRange('A:H').setNumberFormat('@');
+  h.getRange(1, 1, 1, HOJAS.usuarios.columnas.length).setValues([HOJAS.usuarios.columnas]);
+  if (nuevas.length) h.getRange(2, 1, nuevas.length, HOJAS.usuarios.columnas.length).setValues(nuevas);
 }
 
 function hojasExisten_() {
@@ -583,15 +596,6 @@ function registrar_(usuario, accion, clave, anterior, nuevo) {
   try {
     hoja_(HOJAS.bitacora).appendRow([ahora_(), usuario, accion, clave, String(anterior), String(nuevo)]);
   } catch (e) { /* la bitácora nunca debe romper la operación principal */ }
-}
-
-function hash_(texto, salt) {
-  let h = String(salt) + '::' + String(texto);
-  for (let i = 0; i < APP.iteracionesHash; i++) {
-    h = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, h + String(salt), Utilities.Charset.UTF_8)
-      .map(b => ('0' + (b & 0xff).toString(16)).slice(-2)).join('');
-  }
-  return h;
 }
 
 function hoja_(def) {

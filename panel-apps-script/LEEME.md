@@ -16,7 +16,7 @@ de la web https://msaenzy.github.io/dra-martha-sanchez/. El Google Sheet es la b
    - Quién tiene acceso: **Cualquier persona** (la web necesita leer la API; el panel se protege con su propio login).
    Autoriza los permisos.
 4. Copia la URL que termina en `/exec`:
-   - Esa URL es el **panel** (ábrela y entra con `admin` / `Pediatria2026!`; te pedirá cambiarla).
+   - Esa URL es el **panel** (ábrela y entra con `admin` / `Pediatria2026!`, que están en la pestaña Usuarios).
    - En el repo de la web, abre `config/site-data.js` y pega esa misma URL en `SHEET_API_URL`. Haz push.
 5. Listo: lo que se guarde en el panel aparece en la web en máx. ~5 minutos (caché de la API).
 
@@ -29,7 +29,8 @@ Si vienes de la versión anterior (whatsapp / telefono_visible / telefono_llamad
 Implementar → Gestionar implementaciones → editar (lápiz) → Versión: Nueva → Implementar. Así la URL `/exec` no cambia.
 
 ## Seguridad
-- Contraseñas con sal + SHA-256 iterado; columnas Hash/Salt ocultas en la hoja.
+- Usuarios y contraseñas guardados en la pestaña `Usuarios` (columna `Contrasena`, visible y editable).
+  Puedes cambiar una contraseña directo en la celda o desde el panel. El Sheet debe ser PRIVADO.
 - 5 intentos fallidos bloquean ese usuario 15 minutos. Sesiones de 6 h (se renuevan con el uso).
 - La API pública solo expone las filas de `Config` con `Publico = SI`. No guardes datos privados ahí.
 - Roles: `admin` (edita y gestiona usuarios) y `editor` (solo edita la información).
