@@ -3,6 +3,7 @@ import { assets } from "../config/assets.js";
 import { initNavigation } from "./navigation.js";
 import { initAnimations } from "./animations.js";
 import { initCarousels } from "./carousel.js";
+import { initSiteData, siteData } from "./site-data.js";
 
 // <html data-base="./"> en la raíz, "../" en pages/*.html
 const base = document.documentElement.dataset.base || "./";
@@ -17,6 +18,7 @@ document.querySelectorAll("[data-asset]").forEach((el) => {
 
 document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
+initSiteData();
 initNavigation();
 initAnimations();
 initCarousels();
@@ -32,6 +34,6 @@ if (form) {
     const motivo = String(d.get("motivo"));
     const para = motivo.includes("prenatal") ? "" : paciente ? ` para mi hijo/a (${paciente})` : " para mi hijo/a";
     const msg = `Hola, Dra. Martha. Mi nombre es ${nombre} y me gustaría agendar ${motivo}${para}. Prefiero ${d.get("modalidad")} y ${d.get("horario")}. ¿Podría confirmarme la disponibilidad, por favor? Muchas gracias.`;
-    window.open(`https://wa.me/593979530787?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
+    window.open(`https://wa.me/${String(siteData.telefono).replace(/\D/g, "")}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
   });
 }

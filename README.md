@@ -76,5 +76,11 @@ Ver `docs/DESIGN-ANALYSIS.md` (supuestos, assets y fuentes faltantes).
 2. Refrescar la vista previa: pegar la URL en https://developers.facebook.com/tools/debug/ y pulsar "Volver a extraer" (WhatsApp usa la misma caché).
 3. Si se conecta un dominio propio, reemplazar `https://msaenzy.github.io/dra-martha-sanchez/` en `index.html`, `robots.txt` y `sitemap.xml`, y las rutas `/dra-martha-sanchez/` de `404.html`.
 
+## v5 — Datos editables desde Google Sheets (Panel web)
+- `panel-apps-script/`: panel con login (Apps Script + Sheet). Ver `panel-apps-script/LEEME.md`.
+- `config/site-data.js`: pega la URL `/exec` en `SHEET_API_URL`. Vacío = la web usa los datos escritos en el HTML.
+- `js/site-data.js`: al cargar, aplica la copia guardada y luego pide los datos frescos; reemplaza el teléfono (una sola variable `telefono` para WhatsApp, llamadas y número visible; incluye el formulario), lugar, dirección, ciudad, país, horario, Instagram, Maps, Facebook/TikTok y el JSON-LD.
+- Límite conocido: la vista previa al compartir (`og:*`) y el `<title>` son estáticos (WhatsApp/Facebook no ejecutan JavaScript). Si cambia la ciudad, actualizarlos a mano en `index.html`.
+
 ## Pendientes (ver docs/DESIGN-ANALYSIS.md)
 Fotos originales en alta resolución, logo vectorial, dirección exacta y testimonios reales.
