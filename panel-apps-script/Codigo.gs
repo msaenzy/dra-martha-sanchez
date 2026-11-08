@@ -28,7 +28,8 @@ const APP = {
   maxIntentos: 5,                        // intentos fallidos antes de bloquear
   bloqueoSegundos: 15 * 60,              // 15 minutos de bloqueo
   cacheApiSegundos: 60,                  // la API pública se cachea 1 minuto (se borra al guardar)
-  version: 'v5.3',
+  version: 'v5.6',
+  idHoja: '',                            // opcional: ID del Google Sheet si el script NO se creó desde el Sheet
   usuarioInicial: 'admin',
   contrasenaInicial: 'Pediatria2026!'    // queda guardada en la pestaña Usuarios (columna Contrasena)
 };
@@ -65,17 +66,33 @@ const CLAVES_OBSOLETAS = { whatsapp: 'telefono', telefono_visible: null, telefon
  * 2. PUNTOS DE ENTRADA
  * ------------------------------------------------------------------------- */
 function doGet(e) {
-  inicializarHoja_();
   const p = (e && e.parameter) || {};
 
-  // API pública para la página web: .../exec?api=config
-  if (p.api === 'config') return respuestaJson_(apiConfigPublica_(p.nocache === '1'));
+  // API pública para la página web: .../exec?api=config  (también ?api=ping para probar)
+  // Nunca devuelve una página de error: siempre JSON (o JSONP), para que la web vea el error real.
+  if (p.api) {
+    let datos;
+    try {
+      inicializarHoja_();
+      datos = p.api === 'ping'
+        ? { ok: true, ping: 'pong', meta: { version: APP.version, hoja: ss_().getName(), generado: ahora_() } }
+        : apiConfigPublica_(p.nocache === '1');
+    } catch (err) {
+      console.error(err && err.stack ? err.stack : err);
+      datos = { ok: false, error: 'Error en el Apps Script: ' + (err && err.message ? err.message : err), meta: { version: APP.version } };
+    }
+    if (p.callback && /^[A-Za-z_$][\w$]{0,60}$/.test(p.callback)) {   // JSONP: plan B de la web
+      return ContentService.createTextOutput(p.callback + '(' + JSON.stringify(datos) + ');').setMimeType(ContentService.MimeType.JAVASCRIPT);
+    }
+    return respuestaJson_(datos);
+  }
 
-  return HtmlService.createHtmlOutputFromFile('Index')
+  inicializarHoja_();
+  const out = HtmlService.createHtmlOutputFromFile('Index')
     .setTitle(APP.nombre)
-    .setFaviconUrl(APP.favicon)
-    .addMetaTag('viewport', 'width=device-width, initial-scale=1')
-    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.DEFAULT);
+    .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+  try { out.setFaviconUrl(APP.favicon); } catch (e2) { /* el favicon nunca debe romper el panel */ }
+  return out;
 }
 
 /** Menú dentro del Google Sheet. */
@@ -402,7 +419,7 @@ function inicializarHoja_() {
   const lock = LockService.getScriptLock();
   lock.waitLock(15000);
   try {
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const ss = ss_();
     ss.setSpreadsheetTimeZone(APP.zonaHoraria);
 
     migrarUsuariosConHash_(ss);
@@ -485,7 +502,7 @@ function migrarUsuariosConHash_(ss) {
 }
 
 function hojasExisten_() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = ss_();
   return Object.keys(HOJAS).every(k => ss.getSheetByName(HOJAS[k].nombre));
 }
 
@@ -598,8 +615,21 @@ function registrar_(usuario, accion, clave, anterior, nuevo) {
   } catch (e) { /* la bitácora nunca debe romper la operación principal */ }
 }
 
+/**
+ * Devuelve el Google Sheet de la base de datos.
+ * • Script creado desde el Sheet (Extensiones → Apps Script): lo detecta solo.
+ * • Script independiente (script.google.com): pega el ID del Sheet en APP.idHoja
+ *   (el ID es la parte larga de la URL: docs.google.com/spreadsheets/d/ESTE_ID/edit).
+ */
+function ss_() {
+  if (APP.idHoja) return SpreadsheetApp.openById(APP.idHoja);
+  const activa = SpreadsheetApp.getActiveSpreadsheet();
+  if (activa) return activa;
+  throw new Error('El script no está vinculado a un Google Sheet. Créalo desde el Sheet (Extensiones → Apps Script) o pega el ID del Sheet en APP.idHoja.');
+}
+
 function hoja_(def) {
-  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(def.nombre);
+  return ss_().getSheetByName(def.nombre);
 }
 
 function columna_(def, nombre) {

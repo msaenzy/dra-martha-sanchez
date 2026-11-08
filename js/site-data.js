@@ -1,13 +1,13 @@
-// site-data.js — v5.3 · aplica en la página los datos editables del Panel web (Google Sheet + Apps Script).
+// site-data.js — v5.5 · aplica en la página los datos editables del Panel web (Google Sheet + Apps Script).
 // • El HTML trae los datos por defecto (SEO y respaldo si el Sheet falla).
 // • Al cargar: 1) aplica la última copia guardada, 2) pide datos frescos a la API y actualiza TODO
 //   (textos, enlaces de WhatsApp, llamadas, Maps, Instagram, Facebook/TikTok y datos para Google).
 // • Logs en la consola del navegador (F12 → Consola) con el prefijo [Panel web].
 // • Diagnóstico visible: abre la web con ?debug=1 (o #debug) y aparece un recuadro con el estado.
 // • En consola: MS_SITE.status, MS_SITE.log, MS_SITE.refresh(), MS_SITE.clearCache().
-import { SHEET_API_URL, DEFAULTS } from "../config/site-data.js?v=5.3";
+import { SHEET_API_URL, DEFAULTS } from "../config/site-data.js?v=5.5";
 
-const VERSION = "web v5.3";
+const VERSION = "web v5.5";
 const CACHE_KEY = "ms-site-data-v2";
 const TIMEOUT_MS = 12000;
 const DEBUG = /[?&]debug=1\b/.test(location.search) || location.hash === "#debug";
@@ -89,14 +89,21 @@ function apply(incoming, source) {
   const changed = Object.keys(DEFAULTS).filter((k) => clean(cur[k]) !== clean(next[k]));
   const counts = { textos: 0, atributos: 0, whatsapp: 0, llamadas: 0, mapas: 0, instagram: 0, redes: 0, jsonld: 0 };
 
-  // 1) Textos y atributos visibles
+  // 1) Textos: cada dato está marcado en el HTML con data-sheet="clave" y se escribe directo desde el Sheet
   const pairs = replacementPairs(cur, next);
+  document.querySelectorAll("[data-sheet]").forEach((el) => {
+    const key = el.dataset.sheet, fmt = el.dataset.sheetFmt;
+    let v = clean(next[key]);
+    if (key === "telefono") v = phoneDisplay(v);
+    if (fmt === "cap") v = cap(v);
+    if (fmt === "dash") v = v.replace(" a ", "–");
+    if (fmt === "at") v = "@" + v;
+    if (fmt === "comma") v = v ? ", " + v : "";
+    if (el.textContent !== v) { el.textContent = v; counts.textos++; }
+  });
+  // Atributos (alt, aria-label, title, opciones del formulario) que mencionan estos datos
   if (pairs.length) {
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-      acceptNode: (n) => (n.parentElement && /^(SCRIPT|STYLE|NOSCRIPT)$/.test(n.parentElement.tagName) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
-    });
-    const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
-    nodes.forEach((n) => { const t = replaceAll(n.nodeValue, pairs); if (t !== n.nodeValue) { n.nodeValue = t; counts.textos++; } });
+    document.querySelectorAll("option").forEach((o) => { const t = replaceAll(o.textContent, pairs); if (t !== o.textContent) { o.textContent = t; counts.textos++; } });
     document.querySelectorAll("[alt],[aria-label],[title],[placeholder],option[value]").forEach((el) => {
       ["alt", "aria-label", "title", "placeholder", "value"].forEach((attr) => {
         const v = el.getAttribute(attr); if (!v) return;
@@ -199,6 +206,32 @@ function diagnose(err, res, body) {
   return err ? err.message || String(err) : "Respuesta desconocida.";
 }
 
+/** Plan B sin CORS: carga la API como <script> (JSONP). Requiere Codigo.gs v5.5+. */
+function jsonp(baseUrl) {
+  return new Promise((resolve, reject) => {
+    const cb = "__msSheet" + Date.now();
+    const s = document.createElement("script");
+    const timer = setTimeout(() => { cleanup(); reject(Object.assign(new Error("timeout JSONP"), { name: "AbortError" })); }, TIMEOUT_MS);
+    function cleanup() { clearTimeout(timer); delete window[cb]; s.remove(); }
+    window[cb] = (json) => { cleanup(); resolve(json); };
+    s.onerror = () => { cleanup(); reject(new Error("JSONP: no se pudo cargar el script de la API")); };
+    s.src = `${baseUrl}?api=config&callback=${cb}${DEBUG ? "&nocache=1" : ""}&t=${Date.now()}`;
+    document.head.appendChild(s);
+  });
+}
+
+function handleJson(json, via, ms) {
+  if (!json || !json.ok || !json.data) throw new Error((json && json.error) || "La API respondió ok:false");
+  state.backend = json.meta || null;
+  log("ok", `Conectado por ${via} en ${ms} ms · backend ${json.meta?.version || "(versión anterior a v5.3)"} · origen ${json.meta?.origen || "?"} · ${Object.keys(json.data).length} claves · última edición en el Sheet: ${json.actualizado || "—"}`);
+  if (!json.meta) log("warn", "El Apps Script publicado es una versión anterior. Pega el Codigo.gs nuevo y crea una Versión nueva de la implementación.");
+  console.log("%c[Panel web]%c Datos recibidos del Google Sheet:", STYLES.info, "", json.data);
+  apply(json.data, "Google Sheet");
+  writeCache({ data: json.data, at: Date.now() });
+  state.status = "conectado";
+  state.lastSync = new Date().toISOString();
+}
+
 async function sync(reason = "carga de la página") {
   if (!SHEET_API_URL) { state.status = "desactivado"; log("warn", "SHEET_API_URL está vacío en config/site-data.js: la web usa los datos del HTML."); return; }
   const url = `${SHEET_API_URL}?api=config${DEBUG ? "&nocache=1" : ""}&t=${Date.now()}`;
@@ -215,18 +248,17 @@ async function sync(reason = "carga de la página") {
     if (!res.ok) throw new Error("HTTP " + res.status);
     let json;
     try { json = JSON.parse(body); } catch { throw Object.assign(new Error("Respuesta no es JSON"), { notJson: true }); }
-    if (!json.ok || !json.data) throw new Error(json.error || "La API respondió ok:false");
-    state.backend = json.meta || null;
-    log("ok", `Conectado en ${ms} ms · HTTP ${res.status} · backend ${json.meta?.version || "(versión anterior a v5.3)"} · origen ${json.meta?.origen || "?"} · ${Object.keys(json.data).length} claves · última edición en el Sheet: ${json.actualizado || "—"}`);
-    if (!json.meta) log("warn", "El Apps Script publicado es una versión anterior. Pega el Codigo.gs v5.3 y crea una Versión nueva de la implementación para ver más detalles.");
-    console.log("%c[Panel web]%c Datos recibidos:", STYLES.info, "", json.data);
-    apply(json.data, "Google Sheet");
-    writeCache({ data: json.data, at: Date.now() });
-    state.status = "conectado";
-    state.lastSync = new Date().toISOString();
+    handleJson(json, "fetch", ms);
   } catch (err) {
-    state.status = "error";
-    log("error", "No se pudo actualizar desde el Google Sheet. " + diagnose(err.notJson ? null : err, res, body), body ? body.slice(0, 300) : err);
+    log("warn", "fetch falló: " + diagnose(err.notJson ? null : err, res, body) + " → probando plan B (JSONP)…");
+    try {
+      const t1 = performance.now();
+      const json = await jsonp(SHEET_API_URL);
+      handleJson(json, "JSONP", Math.round(performance.now() - t1));
+    } catch (err2) {
+      state.status = "error";
+      log("error", "No se pudo leer el Google Sheet (ni fetch ni JSONP). " + diagnose(err.notJson ? null : err, res, body) + " Abre la URL de la API en una pestaña: debe mostrar {\"ok\":true,...}.", body ? body.slice(0, 300) : err2);
+    }
   } finally {
     clearTimeout(timer);
     renderDebug();
