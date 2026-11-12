@@ -2,7 +2,7 @@
 // 1) Implementa el Apps Script como Aplicación web y pega aquí la URL que termina en /exec.
 // Diagnóstico: abre la web con ?debug=1 o mira la consola (F12) → mensajes [Panel web].
 // 2) Deja "" para desactivar la conexión: la web muestra los datos escritos en index.html.
-export const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbyniPseAfa1OidfNpvZVDbBbrGu0kyb1pL-2s77KT1HggS0S9Ma1dTbXt-n5C3rZfYU/exec";
+export const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbwMUEFZSE7vgOjih4EY2eeSdIY4wWbEAcDqU8bTP5D0_RtsqeAxgOl8CehHga9BurAH/exec";
 
 // Valores que hoy están escritos en index.html. NO los cambies aquí:
 // sirven para encontrar y reemplazar el texto por lo que diga el Google Sheet.

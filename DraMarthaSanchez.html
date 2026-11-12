@@ -342,7 +342,7 @@
         <p class="err" id="lErr" role="alert" style="margin:0;color:var(--color-danger);font-weight:700;font-size:.9rem"></p>
         <button class="btn btn--primary btn--block" type="submit" id="bLogin"><svg class="i"><use href="#i-lock"/></svg>Ingresar</button>
       </form>
-      <p class="login__foot">Diseñado por SPONDYLUS Soluciones Digitales · panel v6.1</p>
+      <p class="login__foot">Diseñado por SPONDYLUS Soluciones Digitales · panel v6.2</p>
     </div>
   </section>
 
@@ -479,7 +479,7 @@
        Conexión con el Apps Script (funciona en celular: no abre script.google.com)
        Pega aquí la URL /exec vigente de tu implementación.
        ---------------------------------------------------------------------- */
-    const API_URL = 'https://script.google.com/macros/s/AKfycbyniPseAfa1OidfNpvZVDbBbrGu0kyb1pL-2s77KT1HggS0S9Ma1dTbXt-n5C3rZfYU/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbwMUEFZSE7vgOjih4EY2eeSdIY4wWbEAcDqU8bTP5D0_RtsqeAxgOl8CehHga9BurAH/exec';
     const API_TIMEOUT = 30000;
 
     function api(fn) {
@@ -487,7 +487,8 @@
       const ctrl = 'AbortController' in window ? new AbortController() : null;
       const timer = setTimeout(() => ctrl && ctrl.abort(), API_TIMEOUT);
       // Sin cabeceras personalizadas (text/plain): el navegador no hace "preflight" y no hay error de CORS.
-      return fetch(API_URL, { method: 'POST', body: JSON.stringify({ accion: fn, args: args }), redirect: 'follow', signal: ctrl ? ctrl.signal : undefined })
+      // credentials:'omit' → no envía la sesión de Google del celular (evita el error de "varias cuentas" de Google)
+      return fetch(API_URL, { method: 'POST', body: JSON.stringify({ accion: fn, args: args }), redirect: 'follow', credentials: 'omit', cache: 'no-store', signal: ctrl ? ctrl.signal : undefined })
         .then(r => r.text())
         .then(t => {
           let res;
@@ -508,6 +509,13 @@
 
     /** Prueba el Apps Script por JSONP (?api=ping) y explica exactamente qué falla. */
     function ping() {
+      // 1) fetch sin sesión de Google (lo normal); 2) si falla, JSONP como respaldo
+      return fetch(API_URL + '?api=ping&t=' + Date.now(), { credentials: 'omit', cache: 'no-store', redirect: 'follow' })
+        .then(r => r.text()).then(t => JSON.parse(t))
+        .catch(() => pingJsonp());
+    }
+
+    function pingJsonp() {
       return new Promise((resolve, reject) => {
         const cb = '__msPing' + Date.now();
         const sc = document.createElement('script');
